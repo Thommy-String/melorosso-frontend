@@ -14,12 +14,16 @@ html {
   --c-accent: #007bff;
   --c-accent-dark: #0056b3;
   --c-accent-soft: #e7f1ff;
+  --c-success: #28a745;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   --radius-md: 8px;
   --radius-lg: 16px;
-  --margin-xl: 256px;
+  --margin-xl: 256px; 
+  --margin-lg: 128px;
+  --margin-md: 64px;
   --margin-sx: 32px;
+
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -35,87 +39,193 @@ body {
 
 /* --- CONTAINER PRINCIPALE ADATTIVO --- */
 .container {
-  /* MODIFICA: Aumentata la larghezza massima per schermi grandi */
   max-width: 1800px;
-  width: 90%; /* Occupa il 90% della larghezza dello schermo */
+  width: 90%;
   margin: 0 auto;
 }
 
-/* Stile per il contenitore di video e immagini */
+/* --- MEDIA (video/immagini) --- */
 .media-container {
   width: 100%;
   margin-top: var(--margin-sx);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  aspect-ratio: 16 / 9; 
 }
 
 .media-container video, .media-container img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
+}
+
+/* --- MEDIA PORTRAIT DEDICATA (solo per l'immagine verticale dei lead) --- */
+.media-container.portrait-media {
+  max-width: 520px;           /* più piccola rispetto agli altri media */
+  aspect-ratio: 4 / 5;        /* contenitore verticale controllato */
+  margin-left: auto;
+  margin-right: auto;
+}
+.media-container.portrait-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* riempie il contenitore, croppando dove serve */
+  object-position: center;    /* centrato */
   display: block;
 }
 
+@media (max-width: 768px) {
+  .media-container.portrait-media {
+    max-width: 360px;         /* più piccola su mobile */
+    aspect-ratio: 3 / 4;      /* rapporto più comodo su schermi piccoli */
+  }
+}
 
+@media (min-width: 769px) {
+  .section-header .media-container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .use-case-showcase-container .video-player-wrapper {
+    max-width: 800px;
+  }
+}
+
+/* --- FINAL CTA (colonne) --- */
+.final-cta-content { text-align: left; }
+.final-cta-image-wrapper { display: flex; justify-content: center; align-items: center; }
+.final-cta-image { max-width: 450px; width: 100%; height: auto; object-fit: cover; }
+
+/* --- FINAL CTA (layout migliorato) --- */
+.final-cta { 
+  padding: var(--margin-md) 0; 
+  background: linear-gradient(0deg, rgba(0,0,0,0.02), rgba(0,0,0,0));
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+
+/* Layout a due colonne con proporzioni migliori per la CTA finale */
+.final-cta .hero-container { 
+  grid-template-columns: 1.2fr 1fr; 
+  align-items: center; 
+  gap: 40px; 
+}
+
+/* Tipografia e spacing più compatti per la CTA */
+.final-cta .section-tag { margin-bottom: 8px; }
+.final-cta .section-title { margin: 0 0 12px 0; }
+.final-cta .section-subtitle { max-width: 620px; margin: 0 auto; text-align: center; }
+.final-cta .hero-buttons { gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* Immagine leggermente più grande e con ombra morbida */
+.final-cta .final-cta-image-wrapper { justify-content: flex-end; }
+.final-cta .final-cta-image { max-width: 520px; filter: drop-shadow(0 10px 24px rgba(0,0,0,0.12)); }
+
+/* --- FINAL CTA (override: una sola colonna, immagine sopra, senza ombre) --- */
+.final-cta .hero-container {
+  display: grid;                 /* assicura il layout a griglia */
+  grid-template-columns: 1fr;    /* una sola colonna su tutti i breakpoint */
+  gap: 24px;                     /* spazio coerente tra elementi */
+}
+
+/* Posiziona l'immagine sopra e centrata */
+.final-cta .final-cta-image-wrapper {
+  grid-row: 1;                   /* immagine prima */
+  justify-content: center !important; /* sovrascrive eventuali regole precedenti */
+}
+
+/* Testo sotto e centrato */
+.final-cta .final-cta-content {
+  grid-row: 2;
+  text-align: center;            /* centra il contenuto */
+}
+
+/* Rimuove qualsiasi ombra/effetto dall'immagine nella FinalCTA */
+.final-cta .final-cta-image {
+  max-width: 520px;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* --- LOGO --- */
+.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--c-text-primary); font-weight: 700; }
+.logo-img { display: block; height: 40px; width: auto; }
+.logo-text { line-height: 1; font-size: 0.7rem; font-weight: 500; }
 
 /* --- ELEMENTI COMUNI E TIPOGRAFIA FLUIDA --- */
-.section-header { text-align: center; margin: var(--margin-xl) 0px; }
-.small-margin { margin: var(--margin-sx);}
+.section-header { text-align: center; margin: var(--margin-lg) 0px; }
+/* Evita che contenuti sotto l'header tocchino i bordi su mobile */
+.site-header .container { width: 92%; }
+.small-margin { margin: var(--margin-sx); }
 .section-tag { display: inline-block; background-color: var(--c-accent-soft); color: var(--c-accent); padding: 6px 12px; border-radius: 99px; font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; }
 
 .section-title {
-  /* MODIFICA: Dimensione del font fluida */
-  font-size: clamp(2rem, 3.5vw, 3rem); 
+  font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.025em;
   margin: 0 0 16px 0;
+  padding: 0 16px;
   line-height: 1.2;
 }
+
 .section-subtitle {
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   color: var(--c-text-secondary);
-  max-width: 720px;
+  max-width: 520px;
   margin: 0 auto;
+  padding: 0 16px;
 }
 
-/* ... (Stili dei bottoni rimangono invariati) ... */
-.cta-button { display: inline-block; font-weight: 600; text-decoration: none; border-radius: var(--radius-md); transition: all 0.2s ease; border: 1px solid transparent; }
+/* --- BOTTONI --- */
+.cta-button { display: inline-block; font-weight: 600; text-decoration: none; border-radius: var(--radius-md); transition: all 0.2s ease; border: 1px solid transparent; box-sizing: border-box; }
 .cta-button.primary { background-color: var(--c-accent); color: white; border-color: var(--c-accent); }
 .cta-button.primary:hover { background-color: var(--c-accent-dark); border-color: var(--c-accent-dark); transform: translateY(-2px); }
 .cta-button.secondary { background-color: var(--c-surface); color: var(--c-accent); border-color: var(--c-border); }
 .cta-button.secondary:hover { background-color: var(--c-accent-soft); border-color: var(--c-accent-soft); }
 .cta-button.large { padding: 14px 28px; font-size: 1rem; }
 .cta-button:not(.large) { padding: 10px 20px; font-size: 0.9rem; }
-.cta-button.full-width { width: 100%; text-align: center; }
+.cta-button.full-width { width: 100%; max-width: 100%; text-align: center; display: block; }
 
 /* --- HEADER --- */
-.site-header { position: sticky; top: 0; width: 100%; background-color: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border-bottom: 1px solid var(--c-border); padding: 16px 0; z-index: 100; }
+.site-header { position: sticky; top: 0; width: 100%; background-color: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border-bottom: 1px solid var(--c-border); padding: 8px 0; z-index: 200; }
 .header-container { display: flex; align-items: center; justify-content: space-between; }
 .logo { font-size: 1.5rem; font-weight: 700; color: var(--c-text-primary); text-decoration: none; }
 .main-nav { list-style: none; margin: 0; padding: 0; display: flex; gap: 32px; }
 .main-nav a { text-decoration: none; color: var(--c-text-secondary); font-weight: 500; transition: color 0.2s ease; }
 .main-nav a:hover { color: var(--c-accent); }
 
+/* --- HAMBURGER (desktop hidden, mobile visible) --- */
+.hamburger-btn {
+  display: none;
+  color: var(--c-text-primary);
+}
+.hamburger-btn:hover { color: var(--c-accent); }
+
+/* --- MOBILE DRAWER --- */
+.mobile-drawer {
+  display: block;
+}
+.mobile-drawer a {
+  color: var(--c-text-primary);
+  text-decoration: none;
+  padding: 8px 0;
+}
+.mobile-drawer a:hover { color: var(--c-accent); }
+
 /* --- HERO SECTION --- */
 .hero-section { padding: 64px 0; }
 .hero-container { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
-.hero-title {
-  /* MODIFICA: Dimensione del font fluida */
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin: 24px 0 24px 0;
-}
-.hero-subtitle { font-size: 1.25rem; color: var(--c-text-secondary); margin: 0 0 32px 0; padding: 0px 10%; }
+.hero-title { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin: 48px 48px 24px 48px; }
+.hero-subtitle { font-size: 1.25rem; color: var(--c-text-secondary); margin: 0 0 32px 0; padding: 0 10%; }
 .hero-buttons { display: flex; gap: 16px; }
 .hero-image-wrapper { text-align: center; }
 .hero-image { max-width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
 
 /* --- FEATURES SECTION --- */
-.features-section { padding: 80px 0; background-color: var(--c-surface); }
+.features-section { padding: 40px 0; background-color: var(--c-surface); }
 .features-grid-relook { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
 .feature-item-relook { text-align: center; background-color: var(--c-bg); border: 1px solid var(--c-border); border-radius: var(--radius-lg); padding: 32px; transition: all 0.3s ease; overflow: hidden; }
 .feature-item-relook:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: #ced4da; }
@@ -125,169 +235,129 @@ body {
 .feature-image-relook { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .feature-item-relook:hover .feature-image-relook { transform: scale(1.05); }
 
-/* ... (Stili per Pricing, CTA e Footer rimangono invariati) ... */
-.pricing-section { padding: 80px 0; }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; align-items: flex-start; }
-/* ... [copia il resto dei tuoi stili da qui in poi] ... */
-
 /* --- MEDIA QUERIES --- */
-
-/* Mantiene il layout responsive per tablet e schermi più piccoli */
 @media (max-width: 992px) {
   .hero-container { grid-template-columns: 1fr; text-align: center; }
-  .hero-content { order: 2; }
+  .hero-content { order: 2; padding-bottom: 2rem; }
   .hero-image-wrapper { order: 1; }
   .hero-buttons { justify-content: center; }
   .features-grid-relook { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
+  .final-cta-content { text-align: center; }
+
+  /* Final CTA: immagine responsive su tablet/mobile */
+  .final-cta .hero-container { gap: 24px; }
+  .final-cta .final-cta-image { height: auto; max-width: 360px; }
+  .final-cta .final-cta-image-wrapper { justify-content: center; }
+
+  .final-cta .final-cta-image-wrapper { justify-content: center !important; }
+  .final-cta .final-cta-image { height: auto; }
 }
 
-/* Nasconde la navigazione e adatta la tipografia per mobile */
 @media (max-width: 768px) {
   .main-nav { display: none; }
   .footer-container { flex-direction: column; gap: 16px; }
-  .container { width: 90%; padding: 0; } /* Rimuove il padding fisso */
-  .section-subtitle { padding: 0; }
-  .hero-title { font-size: 2.5rem;}
-  .hero-subtitle { line-height: 1.6rem;}
+  .container { width: 90%; padding: 0 0 24px 0; }
+  /* Rimuove il padding del container solo dentro l'header su mobile */
+  .site-header .container { padding: 8px 2px; width: 90%; }
+  .hero-media-container { height: 90px; }
+  .section-subtitle { padding: 0 16px 16px 16px; font-size: 14px; }
+  .hero-title { font-size: 2.5rem; margin: 48px 0 24px 0; }
+  .hero-subtitle { line-height: 1.6rem; }
+  .hero-section { margin: 0; padding: 0; }
+  .final-cta-image { width: 100%; height: 100px; }
+
+  /* Override specifico: la FinalCTA non deve schiacciare l'immagine a 100px */
+  .final-cta .final-cta-image { width: 100%; height: auto; max-width: 320px; }
+  .final-cta .final-cta-content { text-align: center; }
+
+  /* Header più compatto su mobile */
+  .header-container { gap: 8px; }
+  .site-header .cta-button.large { padding: 10px 16px; font-size: 0.95rem; }
+
+  /* Mostra l'hamburger su mobile e nasconde la nav desktop */
+  .hamburger-btn { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
+  .main-nav { display: none; }
+
+  /* Drawer mobile: layout verticale e spaziatura confortevole */
+  .mobile-drawer .container { display: flex; flex-direction: column; gap: 8px; padding: 12px 0; }
 }
 
-/* --- PRICING SECTION (Stile Apple rivisto) --- */
-.apple-section {
-  padding: 120px 24px;
-}
+/* --- PRICING SECTION (pulita e moderna) --- */
+.pricing-section { padding: 24px 24px; }
 
-.pricing-grid-apple {
+.pricing-grid {
   display: grid;
-  /* Usa auto-fit per mandare a capo le card se non c'è abbastanza spazio */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px; /* Ridotto lo spazio tra le card */
+  gap: 24px;
   margin-top: 48px;
   width: 100%;
 }
 
-.pricing-card-apple {
+.pricing-card {
   background-color: var(--c-surface);
   border-radius: var(--radius-lg);
-  padding: 28px; /* Padding leggermente ridotto */
+  padding: 28px;
   text-align: left;
   border: 1px solid var(--c-border);
   display: flex;
   flex-direction: column;
-  transition: all 0.2s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   position: relative;
+  
 }
 
-.pricing-card-apple:hover {
-  transform: translateY(-5px);
+.pricing-card:hover {
+  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
+  border-color: #ced4da;
 }
 
-.pricing-card-apple.popular {
+.pricing-card.popular {
   border-color: var(--c-accent);
-  box-shadow: 0 0 20px rgba(0, 113, 227, 0.2);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
 }
 
-.popular-badge { 
-  position: absolute; 
-  top: -15px; 
-  left: 50%; 
-  transform: translateX(-50%); 
-  background-color: var(--c-accent); 
-  color: white; 
-  padding: 4px 12px; 
-  border-radius: 99px; 
-  font-size: 0.8rem; 
-  font-weight: 600; 
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--c-accent);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
-.pricing-plan-name { 
-  font-size: 1.25rem; /* Ridotto */
-  font-weight: 600; 
-  margin: 0; 
-}
+.pricing-plan-name { font-size: 1.25rem; font-weight: 600; margin: 0; }
+.pricing-plan-description { font-size: 0.95rem; color: var(--c-text-secondary); margin: 8px 0 20px; flex-grow: 1; }
+.pricing-plan-price { font-size: 2.25rem; font-weight: 700; margin: 0 0 20px; }
+.price-period { font-size: 1rem; color: var(--c-text-secondary); font-weight: 400; }
 
-.pricing-plan-description { 
-  font-size: 0.95rem; /* Ridotto */
-  color: var(--c-text-secondary); 
-  margin: 8px 0 20px;
-  flex-grow: 1; 
-}
+.pricing-features-list { list-style: none; padding: 0; margin: 0 0 24px 0; display: flex; flex-direction: column; gap: 10px; text-align: left; font-size: 0.9rem; }
+.pricing-features-list li { display: flex; align-items: center; gap: 10px; }
+.pricing-features-list li svg { color: var(--c-success); flex-shrink: 0; }
 
-.pricing-plan-price { 
-  font-size: 2.25rem; /* Ridotto */
-  font-weight: 700; 
-  margin: 0 0 20px; 
-}
-.price-period { 
-  font-size: 1rem; 
-  color: var(--c-text-secondary); 
-  font-weight: 400; 
-}
+/* Assicura che i bottoni nei pricing occupino esattamente la card */
+.pricing-card .cta-button.full-width { width: 100%; max-width: 100%; display: block; box-sizing: border-box; }
 
-.pricing-features-list { 
-  list-style: none; 
-  padding: 0; 
-  margin: 0 0 28px 0; 
-  display: flex; 
-  flex-direction: column; 
-  gap: 10px; 
+/* --- Card Sartoriale / Enterprise (più pulita e moderna) --- */
+.pricing-card.enterprise {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
-  font-size: 0.9rem; /* Ridotto */
+  padding: 28px 36px;
+  border: 1px dashed var(--c-border);
+  background: linear-gradient(0deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02));
 }
-.pricing-features-list li { 
-  display: flex; 
-  align-items: center; 
-  gap: 10px; 
-}
-.pricing-features-list li svg {
-  color: var(--c-success);
-  flex-shrink: 0;
-}
-
-/* Contenitore e card per il piano Enterprise */
-.enterprise-card-container {
-    margin-top: 32px; /* Spazio dalla griglia sopra */
-}
-
-.pricing-card-apple.enterprise {
-    /* Ora non ha più bisogno di regole grid speciali */
-    text-align: center;
-    align-items: center;
-    flex-direction: row; /* Layout orizzontale su schermi grandi */
-    justify-content: space-between;
-    gap: 32px;
-}
-
-.pricing-card-apple.enterprise .pricing-plan-name {
-    margin-bottom: 8px;
-}
-
-.pricing-card-apple.enterprise .pricing-plan-description {
-    max-width: 600px;
-    margin-bottom: 0;
-    text-align: left;
-}
-.pricing-card-apple.enterprise .cta-button-apple {
-    max-width: 200px;
-    flex-shrink: 0; /* Impedisce al bottone di rimpicciolirsi */
-}
-.pricing-card-apple.enterprise .pricing-features-list {
-    display: none; /* Nascondiamo la lista per un layout più pulito */
-}
-
-
-/* Responsive per Pricing */
-@media (max-width: 992px) {
-  /* La griglia diventa a colonna singola automaticamente grazie a auto-fit */
-  .pricing-card-apple.enterprise {
-    flex-direction: column;
-    text-align: center;
-  }
-  .pricing-card-apple.enterprise .pricing-plan-description {
-    text-align: center;
-  }
-}
+.enterprise-text-content { flex-grow: 1; }
+.pricing-card.enterprise .cta-button { flex-shrink: 0; width: auto; }
+.pricing-card.enterprise .pricing-features-list { display: none; }
+.pricing-card.enterprise:hover { border-color: var(--c-accent); box-shadow: var(--shadow-md); }
 
 /* --- FINAL CTA SECTION --- */
 .cta-section { background-color: var(--c-accent-dark); color: white; padding: 80px 0; text-align: center; }
