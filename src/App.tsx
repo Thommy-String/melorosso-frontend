@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useRef, useState } from 'react';
 
-import velocitaRisposta from './images/velocita-risposta.png'
+
 import dashboardCliente from './images/dashboard-cliente.png'
 import storicoChat from './images/storico-chat.png'
 import gelato from './videos/neve-di-latte.mp4'
@@ -10,10 +10,18 @@ import { HashLink } from 'react-router-hash-link';
 import faqs from './images/faqs.png'
 import analisi from './images/analisi.png'
 import melorossoLogo from './images/melorosso-logo.png';
-import brillyLeadGeneration from './images/brilly.png'
+import occhiolinoSalesman from './images/occhiolinoSalesman.png';
+import conosceAzienda from './images/conosceAzienda.png';
+import salesmanScrive from './images/salesmanScrive.png';
+import salesmanCervello from './images/salesmanCervello.png';
+import salesmanRelaxed from './images/salesmanRelaxed.png';
+
 
 
 import UseCaseShowcase from './pages/UseCaseShowcase';
+import FeatureTriptych from './pages/BenefitsGallery';
+import FreeTrial from './pages/freeTrial';
+
 
 // --- Componenti Icona (SVG per pulizia e performance) ---
 const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>;
@@ -177,15 +185,51 @@ const Header = () => {
   );
 };
 
+const HeroSection = () => (
+  <section className="hero-section">
+    <div className="container">
+      <h2 className="section-title">
+        Agente AI che {" "}
+        <span
+          style={{
+            background: "linear-gradient(90deg,rgb(85, 0, 255), rgba(255, 89, 0, 0.97))",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: "inherit",
+          }}
+        >
+          risponde e vende
+        </span>{" "}
+         sul tuo sito 24/7
+      </h2>
+
+      <p className="section-subtitle">
+        Un assistente virtuale che risponde ai visitatori, consiglia i prodotti giusti e aumenta le vendite.
+       
+      </p>
+
+      <div className="hero-buttons">
+        <HashLink smooth to="/#pricing" className="cta-button primary large">Prova Gratis</HashLink>
+      </div>
+      <div className='no-card-required-container'>
+      <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
+      <p className="no-card-text">Senza carta.</p>
+      </div>
+
+      
+    </div>
+  </section>
+);
+
 const FinalCTA = () => (
   // Sezione finale: immagine sopra, testo sotto (layout a una colonna gestito da CSS)
-  <section className="hero-section final-cta">
-    <div className="container hero-container">
+  <section className="final-cta">
+    <div className="">
 
       {/* IMMAGINE IN ALTO */}
       <div className="final-cta-image-wrapper">
         <img
-          src="https://i.pinimg.com/originals/c6/2b/df/c62bdf5f0f0ac2a054aa806ed1e07a15.gif"
+          src={occhiolinoSalesman}
           alt="Prova gratis la demo"
           className="final-cta-image"
           loading="lazy"
@@ -197,6 +241,7 @@ const FinalCTA = () => (
       <div className="final-cta-content">
         <h1 className="section-title" style={{ marginTop: 8 }}>Prova gratis.</h1>
         <p className="section-subtitle">Nessuna carta di credito. Nessun vincolo contrattuale.</p>
+        
         <div className="hero-buttons" style={{ marginTop: 16 }}>
           <HashLink smooth to="/#pricing" className="cta-button primary large">Inizia Subito</HashLink>
           <a
@@ -206,21 +251,27 @@ const FinalCTA = () => (
             Contattaci
           </a>
         </div>
+        <div className='no-card-required-container'>
+      <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
+      <p className="no-card-text">Senza carta.</p>
+      </div>
       </div>
 
     </div>
   </section>
 );
 
-const Features = () => (
-  <section id="features" className="features-section">
+const Features: React.FC<{ backgroundColor?: string }> = ({ backgroundColor }) => (
+  <section
+    id="features"
+    className="features-section"
+    style={{ backgroundColor }}
+  >
     <div className="container">
 
-
-      <UseCaseShowcase></UseCaseShowcase>
-
-      <div className="section-header">
-        <h2 className="section-title">📖 Conosce la tua azienda. Parla come te.</h2>
+      <div className="section-header" style={{ backgroundColor: 'rgb(228,219,211,.8)' }}>
+        <img src={salesmanCervello} alt=""  style={{ width: '100px', height: '100px', borderRadius: '50%'}}/>
+        <h2 className="section-title">Conosce la tua azienda.</h2>
         <p className="section-subtitle">Impara direttamente dai tuoi prodotti, servizi e documenti. Risponde ai visitatori come un esperto della tua azienda guidando verso l’acquisto.</p>
 
 
@@ -231,10 +282,12 @@ const Features = () => (
 
 
 
-      <div className="section-header">
+      <div className="section-header" style={{ backgroundColor: '#fff' }}>
         <span className="section-tag">NOVITÀ 2025</span>
-        <h2 className="section-title">💬 Raccoglie le domande frequenti.</h2>
-        <p className="section-subtitle">Il chatbot registra automaticamente le domande ricorrenti e le mostra nella tua dashboard, così sai sempre cosa chiedono i clienti.</p>
+        <img src={salesmanScrive} alt=""  style={{ width: '100px', height: '100px', borderRadius: '50%'}}/>
+
+        <h2 className="section-title">Raccoglie le domande frequenti dei clienti.</h2>
+        <p className="section-subtitle">L'agente registra automaticamente le domande ricorrenti e le mostra nella tua dashboard, così sai sempre cosa chiedono di più i clienti.</p>
 
         {/* MODIFICA: Immagine avvolta nel nuovo contenitore */}
         <div className="media-container">
@@ -243,32 +296,13 @@ const Features = () => (
       </div>
 
 
-      <div className="section-header">
+
+
+      <div className="section-header" style={{ backgroundColor: 'rgb(255,243,205,.6)' }}>
         <span className="section-tag">NOVITÀ 2025</span>
-        <h2 className="section-title">🎣 Cattura clienti interessati.</h2>
-        <p className="section-subtitle">Ogni interazione può diventare un nuovo cliente. Il chatbot riconosce chi è interessato e acquisisce per te le informazioni di contatto più importanti.</p>
+        <img src={conosceAzienda} alt=""  style={{ width: '100px', height: '100px', borderRadius: '50%'}}/>
 
-        {/* MODIFICA: Immagine avvolta nel nuovo contenitore */}
-        <div className="media-container portrait-media">
-          <img src={brillyLeadGeneration} alt="raccoglie i contatti" />
-        </div>
-      </div>
-
-      <div className="section-header">
-        <h2 className="section-title">⏱️ Risposte immediate. Niente attese.</h2>
-        <p className="section-subtitle">Per i tuoi clienti, ogni secondo conta. Risponde 2,7 volte più veloce della concorrenza.</p>
-
-        {/* MODIFICA: Video avvolto nel nuovo contenitore */}
-        <div className="media-container">
-          <img src={velocitaRisposta}></img>
-        </div>
-      </div>
-
-
-
-      <div className="section-header">
-        <span className="section-tag">NOVITÀ 2025</span>
-        <h2 className="section-title">🔎 Analizza ogni conversazione.</h2>
+        <h2 className="section-title">Analizza ogni conversazione.</h2>
         <p className="section-subtitle">L’AI esamina automaticamente ogni conversazione con i clienti e ti mostra insight pratici nella dashboard: cosa funziona, dove migliorare, e come rendere l’esperienza ancora più efficace.</p>
 
         {/* MODIFICA: Immagine avvolta nel nuovo contenitore */}
@@ -280,9 +314,11 @@ const Features = () => (
 
     </div>
 
-    <div className="section-header">
-      <h2 className="section-title">👀 Gestione chiara. Senza sforzo. </h2>
-      <p className="section-subtitle">Gestisci messaggi, contatti e dati raccolti in un’unica dashboard semplice e intuitiva. Così hai sempre tutto sotto controllo, senza complessità.</p>
+    <div className="section-header" style={{ backgroundColor: '#fff' }}>
+              <img src={salesmanRelaxed} alt=""  style={{ width: '100px', height: '100px', borderRadius: '50%'}}/>
+
+      <h2 className="section-title">Gestione chiara. Senza sforzo. </h2>
+      <p className="section-subtitle">Controlla messaggi, contatti e dati raccolti in un’unica dashboard semplice e intuitiva. Così hai sempre tutto sotto controllo, senza complessità.</p>
 
       {/* MODIFICA: Video avvolto nel nuovo contenitore */}
       <div className="media-container">
@@ -293,17 +329,6 @@ const Features = () => (
         <img src={storicoChat}></img>
       </div>
     </div>
-
-    <div className="section-header">
-        <h2 className="section-title">⚡ Si installa in un click.</h2>
-        <p className="section-subtitle">Ti forniamo un frammento di codice sicuro da copiare e incollare sul tuo sito. In pochi secondi il tuo assistente AI è attivo e pronto a rispondere.</p>
-
-      
-        <div className="media-container">
-          <img src='https://www.patternfly.org/images/9770fea5.svg'></img>
-        </div>
-    </div>
-
   </section>
 );
 
@@ -383,8 +408,13 @@ function App() {
   return (
     <>
       <Header />
+      <HeroSection />
+      
       <main>
-        <Features />
+        <FeatureTriptych></FeatureTriptych>
+        <UseCaseShowcase></UseCaseShowcase>
+         <FreeTrial></FreeTrial>
+        <Features backgroundColor="#f9f9f9" />
         <Pricing />
         <FinalCTA />
       </main>

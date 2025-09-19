@@ -1,0 +1,70 @@
+.free-trial {
+  text-align: center;
+  padding: 120px 20px;
+}
+
+.free-trial-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.free-trial-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.free-trial-image-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.free-trial-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.free-trial-title {
+  font-size: 1.8rem; /* un po’ più piccolo del tuo FinalCTA */
+  margin: 0;
+}
+
+.free-trial-subtitle {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.free-trial-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cta-button.medium {
+  font-size: 0.9rem;
+  padding: 10px 20px;
+}
+
+.free-trial-no-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0px;
+}
+
+.no-card-image {
+  width: 20px;
+  height: 20px;
+}
+
+.no-card-text {
+  font-size: 0.9rem;
+  color: #333;
+}

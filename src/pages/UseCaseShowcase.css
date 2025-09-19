@@ -1,8 +1,8 @@
 /* Stili esistenti per container, titolo e sottotitolo... */
 .use-case-showcase-container {
-  background-color: #ffffff;
+  background-color: #f5f5f6;
   color: #1a1a1a;
-  padding: 0px 0; /* Padding verticale, orizzontale gestito internamente */
+  padding: 64px 0; /* Padding verticale, orizzontale gestito internamente */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -28,11 +28,12 @@
 
 /* 1. Contenitore principale delle righe */
 .chips-nav {
-  width: 100%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   gap: 16px; /* Spazio verticale tra le due righe */
   margin-bottom: 40px;
+  margin-top: 16px;
 }
 
 /* 2. Stile per ogni singola riga (la "maschera") */
@@ -41,6 +42,19 @@
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Centra visivamente le righe sopra i 1200px */
+@media (min-width: 1200px) {
+  .chips-scroller { display: flex; justify-content: center; }
+}
+
+/* Forza il centraggio reale su viewport ampie con "spacer" flessibili */
+@media (min-width: 1200px) {
+  .chips-scroller { display: flex; align-items: center; }
+  .chips-scroller::before,
+  .chips-scroller::after { content: none; flex: 0 0 0; display: none; }
+  .chips-track { margin: 0 auto; }
 }
 
 /* 3. Il nastro che scorre (stile base) */
@@ -66,22 +80,14 @@
 
 /* Animazione da destra a sinistra */
 @keyframes scroll-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(-25%); }
+  to   { transform: translateX(-75%); }
 }
 
 /* Nuova animazione da sinistra a destra */
 @keyframes scroll-right {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(-75%); }
+  to   { transform: translateX(-25%); }
 }
 
 
@@ -152,4 +158,47 @@
   .showcase-subtitle { font-size: 1rem; }
   .chips-track { animation-duration: 15s; }
   .chips-track--reverse { animation-duration: 25s; }
+  .chips-nav {width: 100%;}
+}
+/* ===== Desktop layout (≥1200px): stop marquee and center rows ===== */
+@media (min-width: 1200px) {
+  /* Disattiva gradient mask e overflow per un centraggio pulito */
+  .chips-scroller {
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+    display: block;           /* era flex: evita interferenze di justify/align */
+    width: 100%;
+  }
+
+  /* Centra realmente il nastro e ferma l'animazione */
+  .chips-track {
+    animation: none !important;
+    transform: none !important;
+    position: static;         /* rimuove left:50% */
+    left: auto;
+    translate: none;          /* rimuove translate */
+    width: max-content;
+    margin: 0 auto;           /* centrato orizzontalmente */
+  }
+
+  /* Nasconde la seconda metà duplicata (n = 7 in questo progetto: 6 chip per riga) */
+  .chips-nav > .chips-scroller:nth-child(1) .chips-track .chip:nth-child(n+7),
+  .chips-nav > .chips-scroller:nth-child(2) .chips-track .chip:nth-child(n+7) {
+    display: none;
+  }
+}
+
+/* ===== Tablet tuning (768px–1199px): start reverse row more to the right ===== */
+@media (min-width: 768px) and (max-width: 1199px) {
+  /* Usa una variante di animazione che parte da -50% (non troppo a sinistra)
+     e scorre verso destra fino a -25%, così si vedono subito i chip */
+  .chips-track--reverse {
+    animation-name: scroll-right-tablet;
+  }
+
+  @keyframes scroll-right-tablet {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(-25%); }
+  }
 }

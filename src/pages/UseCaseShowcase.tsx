@@ -16,7 +16,7 @@ import dentista from '../images/dentista.png'
 import palestra from '../images/palestra.png'
 import edilizia from '../images/edilizia.png'
 import hotel from '../images/hotel.png'
-import { HashLink } from 'react-router-hash-link';
+
 
 interface UseCase {
   id: string;
@@ -58,19 +58,10 @@ const UseCaseShowcase: React.FC = () => {
   return (
     <section className="use-case-showcase-container">
       <h2 className="section-title">
-        Assistente AI sul tuo sito che {" "}
-        <span
-          style={{
-            background: "linear-gradient(90deg,rgb(85, 0, 255), rgba(255, 89, 0, 0.97))",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontWeight: "inherit",
-          }}
-        >
-          risponde e vende
-        </span>{" "}
-         24/7
+         Esempi
       </h2>
+              <p className="section-subtitle">Design coerente con il tuo brand e risposte fondate sul tuo catalogo e servizi.</p>
+
       <nav className="chips-nav">
         {/* Riga 1: Scorre verso sinistra */}
         <div className="chips-scroller">
@@ -141,9 +132,7 @@ const UseCaseShowcase: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      <div className="hero-buttons">
-        <HashLink smooth to="/#pricing" className="cta-button primary large">Prova Gratis. Senza carta.</HashLink>
-      </div>
+    
     </section>
   );
 };
