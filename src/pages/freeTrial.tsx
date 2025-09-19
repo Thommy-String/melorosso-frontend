@@ -1,4 +1,3 @@
-import React from "react";
 import { HashLink } from "react-router-hash-link";
 import occhiolinoSalesman from "../images/occhiolinoSalesman.png"; // <-- aggiorna il path se serve
 import "./FreeTrial.css";
