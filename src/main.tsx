@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
-import App from './App.tsx';
-import ContactPage from './pages/Contact.tsx';
+import App from './App';
+import ContactPage from './pages/Contact';
 import './App.css';
 
 // Crea il router con le tue rotte

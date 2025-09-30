@@ -5,7 +5,6 @@ import strettaDiMano from '../images/strettaDiMano.png';
 import catturaClienti from '../images/catturaCliente.png'
 import lavagna from '../images/salesmanLavagna.png'
 import chatting from '../images/salesmanChatting.png'
-import parlaComeTe from '../images/parlaComeTe.png'
 import correre from '../images/correre.png'
 import easyInstall from '../images/easyInstall.png'
 
