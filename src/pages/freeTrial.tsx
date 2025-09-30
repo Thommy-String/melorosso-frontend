@@ -22,7 +22,7 @@ const FreeTrial = () => (
 
       {/* Frase sotto */}
       <p className="free-trial-subtitle">
-        Nessuna carta. Nessun vincolo.
+        Nessuna carta. Nessun contratto.
       </p>
 
       {/* Pulsanti */}

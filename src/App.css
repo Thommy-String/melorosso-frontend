@@ -246,7 +246,7 @@ p {
 .mobile-drawer a:hover { color: var(--c-accent); }
 
 /* --- HERO SECTION --- */
-.hero-section { padding: 86px 0; }
+.hero-section { padding: 64px 0; }
 .hero-container { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
 .hero-title { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin: 48px 48px 24px 48px; }
 .hero-subtitle { font-size: 1.25rem; color: var(--c-text-secondary); margin: 0 0 32px 0; padding: 0 10%; }
@@ -403,7 +403,7 @@ p {
 /* === HERO (moderna, senza immagine) + BENEFITS APPLE-CARD === */
 
 .hero-section {
-  padding: var(--margin-lg) 0 var(--margin-md);
+  padding: var(--margin-md) 0 var(--margin-md);
   /* Grey dot pattern + top overlay gradient to fade dots near bottom for smoother section transition */
   background-color: #f5f5f7; /* light grey base */
   background-image:

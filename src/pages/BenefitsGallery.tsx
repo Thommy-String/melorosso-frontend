@@ -3,7 +3,8 @@ import "./BenefitsGallery.css";
 
 import strettaDiMano from '../images/strettaDiMano.png';
 import catturaClienti from '../images/catturaCliente.png'
-import instancabile from '../images/instancabile.png'
+import lavagna from '../images/salesmanLavagna.png'
+import chatting from '../images/salesmanChatting.png'
 import parlaComeTe from '../images/parlaComeTe.png'
 import correre from '../images/correre.png'
 import easyInstall from '../images/easyInstall.png'
@@ -20,12 +21,21 @@ type FeatureItem = {
 const ITEMS: FeatureItem[] = [
     {
         id: "ceramic-shield",
-        image: instancabile,
+        image: chatting,
         imageAlt: "Chat dell’assistente che risponde subito",
         eyebrow: "Instancabile",
         title: "Sempre online.",
         body:
-            "Risponde in pochi secondi, 24/7. Trasforma l’attesa in azione mentre l’interesse è al massimo."
+            "Risponde in pochi secondi, 24/7. Mai più clienti persi."
+    },
+    {
+        id: "tasto-azione",
+        image: lavagna,
+        imageAlt: "Suggerimenti mirati con pulsante Acquista",
+        eyebrow: "Su misura",
+        title: "Addestrato sui tuoi prodotti e servizi.",
+        body:
+            "Non è un chatbot generico. Conosce i tuoi orari, documenti, prodotti e servizi. Risponde come un vero esperto del tuo staff interno."
     },
      {
         id: "clienti",
@@ -34,15 +44,6 @@ const ITEMS: FeatureItem[] = [
         eyebrow: "Furbo",
         title: "Cattura clienti.",
         body: "Raccoglie nome, email automaticamente ai clienti che mostrano interesse e intenzione."
-    },
-    {
-        id: "tasto-azione",
-        image: parlaComeTe,
-        imageAlt: "Suggerimenti mirati con pulsante Acquista",
-        eyebrow: "Su misura",
-        title: "Parla come te.",
-        body:
-            "Non è un chatbot generico. Conosce i tuoi orari, documenti, prodotti e servizi. Risponde come un vero esperto."
     },
     {
         id: "usb-c",
@@ -66,7 +67,7 @@ const ITEMS: FeatureItem[] = [
         image: easyInstall,
         imageAlt: "Assistente online anche di notte",
         eyebrow: "Configurazione",
-        title: "Te lo installiamo noi.",
+        title: "Te lo installiamo in 10m.",
         body: "Ti forniamo noi un frammento di codice. Non devi fare nulla tu. Copia, incolla, fatto."
     },
 

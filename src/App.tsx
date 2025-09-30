@@ -21,10 +21,47 @@ import salesmanRelaxed from './images/salesmanRelaxed.png';
 import UseCaseShowcase from './pages/UseCaseShowcase';
 import FeatureTriptych from './pages/BenefitsGallery';
 import FreeTrial from './pages/freeTrial';
+import SocialProof from './pages/SocialProof';
+import Reviews from './pages/Reviews';
 
 
 // --- Componenti Icona (SVG per pulizia e performance) ---
 const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>;
+
+const ChatIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+  </svg>
+);
+
+const DashboardIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 13h8V3H3zM13 21h8V11h-8zM13 3v6h8V3zM3 21h8v-6H3z"/>
+  </svg>
+);
+
+const FaqIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4"/>
+    <line x1="12" y1="17" x2="12" y2="17"/>
+    <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+  </svg>
+);
+
+const AnalysisIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 3v18h18"/>
+    <path d="M7 13l3 3 5-8"/>
+  </svg>
+);
+
+const SupportIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M8 15s1.5 2 4 2 4-2 4-2"/>
+    <path d="M9 9h.01M15 9h.01"/>
+  </svg>
+);
 
 const plansData = [
   {
@@ -33,7 +70,13 @@ const plansData = [
     price: 0,
     quota: 30,
     description: 'Perfetto per testare la potenza del nostro AI sul tuo sito.',
-    features: ['30 chat/mese', 'Dashboard analitica', 'Domande più frequenti', 'Analisi Conversazioni',],
+    features: [
+      { text: '30 chat/mese', icon: <ChatIcon /> },
+      { text: 'Integrazione gratis sul tuo sito web', icon: <CheckIcon /> },
+      { text: 'Dashboard analitica', icon: <DashboardIcon /> },
+      { text: 'Report domande più frequenti', icon: <FaqIcon /> },
+      { text: 'Analisi Conversazioni', icon: <AnalysisIcon /> },
+    ],
     isPopular: false,
   },
   {
@@ -42,7 +85,13 @@ const plansData = [
     price: 89,
     quota: 60,
     description: 'Per piccole e medie imprese.',
-    features: ['60 chat/mese', 'Domande più frequenti', 'Analisi Conversazioni', 'Dashboard analitica'],
+    features: [
+      { text: '60 chat/mese', icon: <ChatIcon /> },
+      { text: 'Integrazione gratis sul tuo sito web', icon: <CheckIcon /> },
+      { text: 'Dashboard analitica', icon: <DashboardIcon /> },
+      { text: 'Report domande più frequenti', icon: <FaqIcon /> },
+      { text: 'Analisi Conversazioni', icon: <AnalysisIcon /> },
+    ],
     isPopular: true,
   },
   {
@@ -51,7 +100,14 @@ const plansData = [
     price: 119,
     quota: 100,
     description: 'Potenza e volumi per aziende più grandi.',
-    features: ['100 chat/mese', 'Domande più frequenti', 'Analisi Conversazioni', 'Dashboard analitica', 'Supporto prioritario'],
+    features: [
+      { text: '100 chat/mese', icon: <ChatIcon /> },
+      { text: 'Integrazione gratis sul tuo sito web', icon: <CheckIcon /> },
+      { text: 'Report domande più frequenti', icon: <FaqIcon /> },
+      { text: 'Analisi Conversazioni', icon: <AnalysisIcon /> },
+      { text: 'Dashboard analitica', icon: <DashboardIcon /> },
+      { text: 'Supporto prioritario', icon: <SupportIcon /> },
+    ],
     isPopular: false,
   },
 ];
@@ -189,7 +245,7 @@ const HeroSection = () => (
   <section className="hero-section">
     <div className="container">
       <h2 className="section-title">
-        Agente AI che {" "}
+        Il tuo Agente AI su misura: {" "}
         <span
           style={{
             background: "linear-gradient(90deg,rgb(85, 0, 255), rgba(255, 89, 0, 0.97))",
@@ -198,16 +254,17 @@ const HeroSection = () => (
             fontWeight: "inherit",
           }}
         >
-          risponde e vende
+          ascolta, consiglia e vende
         </span>{" "}
-         sul tuo sito 24/7
+        direttamente sul tuo sito
       </h2>
 
       <p className="section-subtitle">
-        Un assistente virtuale che risponde ai visitatori, consiglia i prodotti giusti e aumenta le vendite.
-       
+          Risparmia tempo sull'assistenza clienti e vendi di più. L'IA lavora per te.
       </p>
-
+      <div style={{ marginTop: 12 }}>
+  
+      </div>
       <div className="hero-buttons">
         <HashLink smooth to="/#pricing" className="cta-button primary large">Prova Gratis</HashLink>
       </div>
@@ -215,8 +272,11 @@ const HeroSection = () => (
       <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
       <p className="no-card-text">Senza carta.</p>
       </div>
-
-      
+      <SocialProof
+          /* avatars is optional; you can add local images later */
+          rating={5}
+          text="92.7% di aziende 🇮🇹 soddisfatte: il più alto in Italia."
+        />
     </div>
   </section>
 );
@@ -240,7 +300,7 @@ const FinalCTA = () => (
       {/* CONTENUTO SOTTO */}
       <div className="final-cta-content">
         <h1 className="section-title" style={{ marginTop: 8 }}>Prova gratis.</h1>
-        <p className="section-subtitle">Nessuna carta di credito. Nessun vincolo contrattuale.</p>
+        <p className="section-subtitle">Nessuna carta di credito. Nessun vincolo.</p>
         
         <div className="hero-buttons" style={{ marginTop: 16 }}>
           <HashLink smooth to="/#pricing" className="cta-button primary large">Inizia Subito</HashLink>
@@ -353,8 +413,10 @@ const Pricing = () => (
               {plan.price > 0 && <span className="price-period"> / mese</span>}
             </p>
             <ul className="pricing-features-list">
-              {plan.features.map(feature => (
-                <li key={feature}><CheckIcon /> {feature}</li>
+              {plan.features.map((feature, index) => (
+                <li key={feature.text + index}>
+                  {feature.icon} {feature.text}
+                </li>
               ))}
             </ul>
             {/* MODIFICA QUI: Usa <Link> invece di <a> per navigare alla pagina di contatto */}
@@ -412,6 +474,7 @@ function App() {
       
       <main>
         <FeatureTriptych></FeatureTriptych>
+        <Reviews />
         <UseCaseShowcase></UseCaseShowcase>
          <FreeTrial></FreeTrial>
         <Features backgroundColor="#f9f9f9" />
