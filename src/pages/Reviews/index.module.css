@@ -41,7 +41,7 @@
 .company {
   margin: 0;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 800;
   color: #111827;
   display: inline-flex;
   align-items: center;
@@ -85,7 +85,7 @@
 .message {
   margin: 2px 0 6px 0;
   color: #374151;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
 }

@@ -15,6 +15,7 @@ import conosceAzienda from './images/conosceAzienda.png';
 import salesmanScrive from './images/salesmanScrive.png';
 import salesmanCervello from './images/salesmanCervello.png';
 import salesmanRelaxed from './images/salesmanRelaxed.png';
+import salesmanRedApple from './images/salesmanRedApple.png';
 
 
 
@@ -30,36 +31,36 @@ const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" heigh
 
 const ChatIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+    <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
   </svg>
 );
 
 const DashboardIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 13h8V3H3zM13 21h8V11h-8zM13 3v6h8V3zM3 21h8v-6H3z"/>
+    <path d="M3 13h8V3H3zM13 21h8V11h-8zM13 3v6h8V3zM3 21h8v-6H3z" />
   </svg>
 );
 
 const FaqIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4"/>
-    <line x1="12" y1="17" x2="12" y2="17"/>
-    <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+    <path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4" />
+    <line x1="12" y1="17" x2="12" y2="17" />
+    <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
   </svg>
 );
 
 const AnalysisIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 3v18h18"/>
-    <path d="M7 13l3 3 5-8"/>
+    <path d="M3 3v18h18" />
+    <path d="M7 13l3 3 5-8" />
   </svg>
 );
 
 const SupportIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/>
-    <path d="M8 15s1.5 2 4 2 4-2 4-2"/>
-    <path d="M9 9h.01M15 9h.01"/>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M8 15s1.5 2 4 2 4-2 4-2" />
+    <path d="M9 9h.01M15 9h.01" />
   </svg>
 );
 
@@ -69,7 +70,7 @@ const plansData = [
     name: 'PIANO GRATIS',
     price: 0,
     quota: 30,
-    description: 'Perfetto per testare la potenza del nostro AI sul tuo sito.',
+    description: 'È l’agente completo, gratis per sempre.',
     features: [
       { text: '30 chat/mese', icon: <ChatIcon /> },
       { text: 'Integrazione gratis sul tuo sito web', icon: <CheckIcon /> },
@@ -244,7 +245,7 @@ const Header = () => {
 const HeroSection = () => (
   <section className="hero-section">
     <div className="container">
-      <h2 className="section-title">
+      <h1 className="section-title">
         Il tuo Agente AI su misura: {" "}
         <span
           style={{
@@ -254,29 +255,28 @@ const HeroSection = () => (
             fontWeight: "inherit",
           }}
         >
-          ascolta, consiglia e vende
+          consiglia e vende GRATIS
         </span>{" "}
-        direttamente sul tuo sito
-      </h2>
+        sul tuo sito.
+      </h1>
 
       <p className="section-subtitle">
-          Risparmia tempo sull'assistenza clienti e vendi di più. L'IA lavora per te.
-      </p>
-      <div style={{ marginTop: 12 }}>
-  
+Ti prepariamo in giornata una demo personalizzata del tuo agente, senza impegno. Riceverai un link privato per provarlo subito. </p>
+      <div style={{ marginTop: 0 }}>
+
       </div>
       <div className="hero-buttons">
-        <HashLink smooth to="/#pricing" className="cta-button primary large">Prova Gratis</HashLink>
+        <HashLink smooth to="/#pricing" className="cta-button primary large">Voglio provare una demo gratis</HashLink>
       </div>
       <div className='no-card-required-container'>
-      <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
-      <p className="no-card-text">Senza carta.</p>
+        <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
+        <p className="no-card-text">Senza carta. Senza limiti di tempo.</p>
       </div>
       <SocialProof
-          /* avatars is optional; you can add local images later */
-          rating={5}
-          text="92.7% di aziende 🇮🇹 soddisfatte: il più alto in Italia."
-        />
+        /* avatars is optional; you can add local images later */
+        rating={5}
+        text="92.7% di aziende 🇮🇹 soddisfatte: il più alto in Italia."
+      />
     </div>
   </section>
 );
@@ -301,9 +301,9 @@ const FinalCTA = () => (
       <div className="final-cta-content">
         <h1 className="section-title" style={{ marginTop: 8 }}>Prova gratis.</h1>
         <p className="section-subtitle">Nessuna carta di credito. Nessun vincolo.</p>
-        
+
         <div className="hero-buttons" style={{ marginTop: 16 }}>
-          <HashLink smooth to="/#pricing" className="cta-button primary large">Inizia Subito</HashLink>
+          <HashLink smooth to="/#pricing" className="cta-button primary large">Ottieni demo</HashLink>
           <a
             href="mailto:info@melorosso.it?subject=Richiesta%20informazioni&body=Ciao%20vorrei%20sapere%20di%20pi%C3%B9%20del%20vostro%20agente%20AI..."
             className="cta-button secondary large"
@@ -312,9 +312,9 @@ const FinalCTA = () => (
           </a>
         </div>
         <div className='no-card-required-container'>
-      <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
-      <p className="no-card-text">Senza carta.</p>
-      </div>
+          <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
+          <p className="no-card-text">Senza carta.</p>
+        </div>
       </div>
 
     </div>
@@ -330,7 +330,7 @@ const Features: React.FC<{ backgroundColor?: string }> = ({ backgroundColor }) =
     <div className="container">
 
       <div className="section-header" style={{ backgroundColor: 'rgb(228,219,211,.8)' }}>
-        <img src={salesmanCervello} alt=""  style={{ width: '100px', height: '100px', borderRadius: '50%'}}/>
+        <img src={salesmanCervello} alt="" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
         <h2 className="section-title">Conosce la tua azienda.</h2>
         <p className="section-subtitle">Impara direttamente dai tuoi prodotti, servizi e documenti. Risponde ai visitatori come un esperto della tua azienda guidando verso l’acquisto.</p>
 
@@ -344,7 +344,7 @@ const Features: React.FC<{ backgroundColor?: string }> = ({ backgroundColor }) =
 
       <div className="section-header" style={{ backgroundColor: '#fff' }}>
         <span className="section-tag">NOVITÀ 2025</span>
-        <img src={salesmanScrive} alt=""  style={{ width: '100px', height: '100px', borderRadius: '50%'}}/>
+        <img src={salesmanScrive} alt="" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
 
         <h2 className="section-title">Raccoglie le domande frequenti dei clienti.</h2>
         <p className="section-subtitle">L'agente registra automaticamente le domande ricorrenti e le mostra nella tua dashboard, così sai sempre cosa chiedono di più i clienti.</p>
@@ -360,7 +360,7 @@ const Features: React.FC<{ backgroundColor?: string }> = ({ backgroundColor }) =
 
       <div className="section-header" style={{ backgroundColor: 'rgb(255,243,205,.6)' }}>
         <span className="section-tag">NOVITÀ 2025</span>
-        <img src={conosceAzienda} alt=""  style={{ width: '100px', height: '100px', borderRadius: '50%'}}/>
+        <img src={conosceAzienda} alt="" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
 
         <h2 className="section-title">Analizza ogni conversazione.</h2>
         <p className="section-subtitle">L’AI esamina automaticamente ogni conversazione con i clienti e ti mostra insight pratici nella dashboard: cosa funziona, dove migliorare, e come rendere l’esperienza ancora più efficace.</p>
@@ -375,7 +375,7 @@ const Features: React.FC<{ backgroundColor?: string }> = ({ backgroundColor }) =
     </div>
 
     <div className="section-header" style={{ backgroundColor: '#fff' }}>
-              <img src={salesmanRelaxed} alt=""  style={{ width: '100px', height: '100px', borderRadius: '50%'}}/>
+      <img src={salesmanRelaxed} alt="" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
 
       <h2 className="section-title">Gestione chiara. Senza sforzo. </h2>
       <p className="section-subtitle">Controlla messaggi, contatti e dati raccolti in un’unica dashboard semplice e intuitiva. Così hai sempre tutto sotto controllo, senza complessità.</p>
@@ -396,10 +396,26 @@ const Pricing = () => (
   <section id="pricing" className="pricing-section">
     <div className="container text-center">
       <div className="section-header small-margin">
-        <span className="section-tag">PREZZI</span>
-        <h2 className="section-title">Inizia qui.</h2>
-        <p className="section-subtitle">Zero costi di installazione. Nessun vincolo. Cancella quando vuoi.</p>
+        <span className="section-tag">PIANI</span>
       </div>
+      {/* Intro stile FreeTrial: immagine a sinistra + titolo + SocialProof */}
+      <div className="free-trial-header" style={{ marginTop: 8 }}>
+        <div className="free-trial-image-wrapper">
+          <img
+            src={salesmanRedApple}
+            alt="Agente AI"
+            className="free-trial-image"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <h2 className="free-trial-title">Demo gratuita</h2>
+      </div>
+
+      <SocialProof
+        rating={5}
+        text="92.7% di aziende 🇮🇹 soddisfatte."
+      />
 
       <div className="pricing-grid">
         {/* Mappatura dinamica dei piani */}
@@ -422,10 +438,13 @@ const Pricing = () => (
             {/* MODIFICA QUI: Usa <Link> invece di <a> per navigare alla pagina di contatto */}
             <Link
               to={`/contact?plan=${encodeURIComponent(plan.name)}`}
-              className={`cta-button ${plan.isPopular ? 'primary' : 'secondary'} full-width`}
+              className={`cta-button primary full-width`}
             >
-              {plan.price === 0 ? 'Inizia Gratis' : 'Scegli Piano'}
+              Richiedi una demo gratis
             </Link>
+            <p style={{ fontSize: '0.9rem', color: 'var(--c-text-secondary)', marginTop: 8, textAlign: 'center' }}>
+              Ti contattiamo noi. Ti prepariamo in giornata una demo su misura del tuo agente, senza impegno. Avrai un link privato per testare come risponderebbe ai clienti sul sito.
+            </p>
           </div>
         ))}
 
@@ -471,12 +490,12 @@ function App() {
     <>
       <Header />
       <HeroSection />
-      
+
       <main>
         <FeatureTriptych></FeatureTriptych>
         <Reviews />
         <UseCaseShowcase></UseCaseShowcase>
-         <FreeTrial></FreeTrial>
+        <FreeTrial></FreeTrial>
         <Features backgroundColor="#f9f9f9" />
         <Pricing />
         <FinalCTA />

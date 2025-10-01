@@ -5,8 +5,7 @@ const DEFAULT_REVIEWS = [
   {
     id: 1,
     company: "Centro Auto Sportive CLG",
-    message:
-      "Prima ricevevo **email e chiamate ripetitive** con le stesse domande ogni giorno. Ora chi visita il sito ha risposte subito dall'agente e io ho **più tempo** per concentrarmi su altro, mi ha tolto un po' di lavoro... Ne avevo provati altri di agenti/chatbot ma solo con loro ho trovato la funzionalità di **analisi delle conversazioni** che fa automaticamente l'intelligenza artificiale. Grazie a Adriano per avermi seguito con cura.",
+message: "Prima ricevevo ogni giorno tante **email e chiamate ripetitive** con le stesse domande. Ora chi visita il sito ottiene **risposte subito dall’agente** e io ho più tempo per concentrarmi su altro. Ho provato altri chatbot, ma solo questo mi dà **l’analisi automatica delle conversazioni** con l’AI. Da quando lo uso ho avuto qualche **visita in negozio** da persone che prima avevano messaggiato con l’agente dal nostro sito. Un grazie a **Valerio** per il supporto sempre attento.",
     date: "2 mesi fa",
     plan: "Utente con Piano Plus",
     photo: "https://www.shutterstock.com/image-photo/close-photo-charming-guy-entrepreneur-260nw-1531460651.jpg",

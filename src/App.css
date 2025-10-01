@@ -156,7 +156,7 @@ body {
 .logo-text { line-height: 1; font-size: 0.7rem; font-weight: 500; }
 
 /* --- ELEMENTI COMUNI E TIPOGRAFIA FLUIDA --- */
-.section-header { text-align: center; padding: 64px 0px; display: flex; flex-direction: column; align-items: center; }
+.section-header { text-align: center; padding: 32px 0px 0px 0px; display: flex; flex-direction: column; align-items: center; }
 /* Evita che contenuti sotto l'header tocchino i bordi su mobile */
 .small-margin { margin: var(--margin-sx); }
 .section-tag { display: inline-block; background-color: var(--c-accent-soft); color: var(--c-accent); padding: 6px 12px; border-radius: 99px; font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; }
@@ -290,7 +290,7 @@ p {
   /* Rimuove il padding del container solo dentro l'header su mobile */
   .site-header .container { padding: 8px 2px; width: 90%; }
   .hero-media-container { height: 90px; }
-  .section-subtitle { padding: 0 32px 32px 32px; font-size: 16px; }
+  .section-subtitle { padding: 0 32px 12px 32px; font-size: 16px; }
   .hero-title { font-size: 2.5rem; margin: 48px 0 24px 0; }
   .hero-subtitle { line-height: 1.6rem; }
   .hero-section { margin: 0; padding: 0; }

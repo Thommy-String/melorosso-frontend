@@ -66,7 +66,7 @@ const ITEMS: FeatureItem[] = [
         image: easyInstall,
         imageAlt: "Assistente online anche di notte",
         eyebrow: "Configurazione",
-        title: "Te lo installiamo in 10m.",
+        title: "Te lo installiamo noi",
         body: "Ti forniamo noi un frammento di codice. Non devi fare nulla tu. Copia, incolla, fatto."
     },
 
