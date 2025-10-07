@@ -1,0 +1,371 @@
+/* ===== Melorosso Request Demo Widget (scoped, prefix mr-) ===== */
+.mr-demo-widget {
+  --mr-radius: 14px;
+  --mr-border: 1px solid var(--c-border, #e5e5e5);
+  --mr-focus: 0 0 0 3px rgba(85, 0, 255, .25);
+  --mr-shadow: 0 6px 24px rgba(0,0,0,.08);
+  --mr-primary: #5b4bff;
+  --mr-text-primary: #1d1d1f;
+  --mr-text-secondary: #6e6e73;
+  --mr-success: #34c759; /* Verde Apple */
+  
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Struttura a step verticali */
+.mr-steps-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mr-step {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 16px;
+  position: relative;
+}
+
+/* Connettore verticale tratteggiato (base) */
+.mr-step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: -16px; 
+  width: 2px;
+  background-image: linear-gradient(to bottom, #d6d6d6 60%, transparent 40%);
+  background-size: 2px 8px;
+  background-repeat: repeat-y;
+  z-index: 1;
+}
+
+/* Connettore di riempimento per animazione */
+.mr-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  width: 2px;
+  height: calc(100% + 8px);
+  background: var(--mr-primary);
+  z-index: 2;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.mr-step.active:not(:last-child)::after {
+  transform: scaleY(1);
+}
+
+.mr-step:first-child:not(.active)::after {
+  animation: pulse-line 2.5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* "Pallino" con il numero */
+.mr-step-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1.5px dashed #cfcfcf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #888;
+  background: var(--c-surface, #fff);
+  z-index: 3;
+  transition: all .3s ease;
+}
+
+.mr-step.current .mr-step-icon {
+  border-color: var(--mr-primary);
+  color: var(--mr-primary);
+}
+
+.mr-step.active .mr-step-icon {
+  border-style: solid;
+  border-color: var(--mr-primary);
+  color: #fff;
+  background: var(--mr-primary);
+  animation: pulse-icon 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Contenuto dello step */
+.mr-step-content {
+  padding-bottom: 24px;
+}
+
+.mr-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Porzione da aggiungere al file .css */
+
+.mr-title-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px; /* Aggiunge un piccolo spazio tra titolo e stato */
+}
+
+.mr-step-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mr-text-primary);
+  margin: 0;
+  flex-shrink: 0; /* Evita che il titolo si restringa */
+}
+
+.mr-title-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mr-step-description {
+  font-size: 14px;
+  color: var(--mr-text-secondary);
+  line-height: 1.5;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+/* Stile unificato per immagini e video */
+.mr-step-image,
+.mr-step-video {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: var(--mr-border);
+  animation: fadeInUp 0.5s both;
+  background-color: #f0f0f0;
+}
+
+/* Contenuti dinamici */
+.mr-dynamic-content {
+  animation: fadeInUp 0.5s 0.1s both;
+}
+
+/* Card "in lavorazione" (Step 1 post-invio) */
+.mr-processing-card {
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05);
+}
+.mr-processing-card .main-title {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--mr-text-primary);
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mr-processing-card .site-name {
+  color: var(--mr-primary);
+}
+.mr-processing-card .primary-text {
+  font-size: 15px;
+  color: var(--mr-text-primary);
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+.mr-processing-card .secondary-text {
+  font-size: 13px;
+  color: var(--mr-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+.mr-processing-card .reset-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mr-text-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 20px;
+  display: inline-block;
+}
+.mr-processing-card .reset-link:hover {
+  color: var(--mr-primary);
+}
+
+/* Spunta verde */
+.success-checkmark {
+  width: 22px;
+  height: 22px;
+  color: var(--mr-success);
+}
+
+/* NUOVO: Stile per il testo animato */
+/* NUOVO: Stile per il testo animato con effetto "shine" */
+.mr-status-text {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  /* 1. Crea un gradiente che farà da "luce" */
+  background: linear-gradient(
+    90deg, 
+    rgba(85, 0, 255, 0.6), 
+    var(--mr-primary), 
+    #fff, 
+    var(--mr-primary), 
+    rgba(85, 0, 255, 0.6)
+  );
+  
+  /* 2. Rendi lo sfondo grande il doppio del testo */
+  background-size: 200% auto;
+
+  /* 3. Ritaglia lo sfondo sulla forma del testo */
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  /* 4. Rendi il colore del testo trasparente per mostrare lo sfondo */
+  color: transparent;
+
+  /* 5. Applica l'animazione che sposta lo sfondo */
+  animation: shine-effect 3s linear infinite;
+}
+
+/* NUOVO: Keyframe per l'animazione "shine" */
+@keyframes shine-effect {
+  to {
+    /* Sposta lo sfondo da destra a sinistra per creare l'effetto onda */
+    background-position: -200% center;
+  }
+}
+
+
+/* Input Form */
+.mr-row {
+  position: relative; /* Necessario per posizionare il pseudo-elemento del bordo */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  align-items: center;
+  border-radius: var(--mr-radius);
+  padding: 4px;
+  background-color: #fff; /* Sfondo dell'input */
+  overflow: hidden; /* IMPORTANTE: Nasconde le parti del gradiente che escono */
+
+  /* Bordo base discreto per quando l'animazione non è attiva o al focus */
+  border: 1.5px solid transparent; /* Bordi inizialmente trasparenti */
+  transition: border-color .3s ease, box-shadow .3s ease; /* Transizione per il focus */
+}
+
+.mr-step.current .mr-row:not(:focus-within) {
+  border-color: transparent;
+  animation: input-glow 2.5s ease-in-out infinite;
+}
+
+.mr-row:focus-within {
+  border-color: var(--mr-primary);
+  box-shadow: var(--mr-focus);
+}
+
+.mr-input {
+  width: 100%;
+  height: 38px;
+  padding: 0 14px;
+  border: none;
+  background: transparent;
+  color: var(--mr-text-primary);
+  outline: none;
+  font-size: 14px;
+}
+
+.mr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform .04s ease, filter .2s ease;
+  background: linear-gradient(90deg, #5b4bff, #9c5cff);
+  color: #fff;
+}
+.mr-btn:hover { filter: brightness(1.05); }
+.mr-btn:active { transform: translateY(1px); }
+
+/* Keyframes */
+@keyframes pulse-line {
+  0%, 100% { transform: scaleY(0); }
+  50% { transform: scaleY(0.5); }
+}
+
+@keyframes input-glow {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(85, 0, 255, 0.3); }
+  50% { box-shadow: 0 0 0 4px rgba(85, 0, 255, 0.1); }
+}
+
+@keyframes pulse-icon {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(85, 0, 255, 0.4); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(85, 0, 255, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(85, 0, 255, 0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Stili per Schermi Piccoli (sotto i 600px) ===== */
+@media (max-width: 600px) {
+
+  .mr-demo-widget {
+    /* NUOVO: Dice al box di includere il padding nella sua larghezza totale */
+    box-sizing: border-box; 
+    
+    /* Questo ora funzionerà correttamente, creando spazio interno */
+    padding: 0 20px; 
+  }
+
+  /* Le dimensioni dei font rimangono corrette */
+  .mr-step-description {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .mr-step-title {
+    font-size: 19px;
+  }
+
+  .mr-input {
+    font-size: 15px;
+  }
+
+  .mr-processing-card .main-title {
+    font-size: 20px;
+  }
+
+  .mr-processing-card .primary-text {
+    font-size: 16px;
+  }
+
+  .mr-processing-card .secondary-text,
+  .mr-processing-card .reset-link {
+    font-size: 14px;
+  }
+}

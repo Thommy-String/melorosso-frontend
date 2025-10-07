@@ -60,7 +60,7 @@ const UseCaseShowcase: React.FC = () => {
       <h2 className="section-title">
          Esempi
       </h2>
-              <p className="section-subtitle">Design coerente con il tuo brand e risposte fondate sul tuo catalogo e servizi.</p>
+              <p className="section-subtitle">Grafica coerente con il tuo brand e risposte fondate sul tuo business</p>
 
       <nav className="chips-nav">
         {/* Riga 1: Scorre verso sinistra */}

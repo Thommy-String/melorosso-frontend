@@ -24,6 +24,7 @@ import FeatureTriptych from './pages/BenefitsGallery';
 import FreeTrial from './pages/freeTrial';
 import SocialProof from './pages/SocialProof';
 import Reviews from './pages/Reviews';
+import RequestDemoWidget from './pages/RequestDemoWidget';
 
 
 // --- Componenti Icona (SVG per pulizia e performance) ---
@@ -246,7 +247,7 @@ const HeroSection = () => (
   <section className="hero-section">
     <div className="container">
       <h1 className="section-title">
-        Il tuo Agente AI su misura: {" "}
+        Ottieni il tuo {" "}
         <span
           style={{
             background: "linear-gradient(90deg,rgb(85, 0, 255), rgba(255, 89, 0, 0.97))",
@@ -255,28 +256,27 @@ const HeroSection = () => (
             fontWeight: "inherit",
           }}
         >
-          consiglia e vende GRATIS
+          Agente AI gratis
         </span>{" "}
-        sul tuo sito.
+         che risponde e vende 24/7 sul tuo sito.
       </h1>
 
-      <p className="section-subtitle">
-Ti prepariamo in giornata una demo personalizzata del tuo agente, senza impegno. Riceverai un link privato per provarlo subito. </p>
-      <div style={{ marginTop: 0 }}>
-
-      </div>
-      <div className="hero-buttons">
-        <HashLink smooth to="/#pricing" className="cta-button primary large">Voglio provare una demo gratis</HashLink>
-      </div>
-      <div className='no-card-required-container'>
-        <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
-        <p className="no-card-text">Senza carta. Senza limiti di tempo.</p>
-      </div>
-      <SocialProof
+  <div style={{ marginTop: 32 }}/>
+     <SocialProof
         /* avatars is optional; you can add local images later */
         rating={5}
         text="92.7% di aziende 🇮🇹 soddisfatte: il più alto in Italia."
       />
+      <div style={{ marginTop: 64 }}/>
+      
+      <div className="hero-widget-wrapper">
+        <RequestDemoWidget source="hero" />
+      </div>
+
+      <div className='no-card-required-container'>
+        <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
+        <p className="no-card-text">Senza carta. Senza limiti di tempo.</p>
+      </div>
     </div>
   </section>
 );
@@ -494,8 +494,8 @@ function App() {
       <main>
         <FeatureTriptych></FeatureTriptych>
         <Reviews />
-        <UseCaseShowcase></UseCaseShowcase>
         <FreeTrial></FreeTrial>
+        <UseCaseShowcase></UseCaseShowcase>
         <Features backgroundColor="#f9f9f9" />
         <Pricing />
         <FinalCTA />

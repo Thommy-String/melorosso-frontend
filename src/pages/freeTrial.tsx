@@ -90,7 +90,7 @@ const FreeTrial = () => (
             to={`/contact?plan=${encodeURIComponent(freePlan.name)}`}
             className="cta-button primary full-width"
           >
-            Richiedi una demo
+            Richiedi una demo gratis
           </Link>
           
 

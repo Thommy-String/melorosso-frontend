@@ -215,7 +215,7 @@ p {
 .cta-button.primary:hover { background-color: var(--c-accent-dark); border-color: var(--c-accent-dark); transform: translateY(-2px); }
 .cta-button.secondary { background-color: var(--c-surface); color: var(--c-accent); border-color: var(--c-border); }
 .cta-button.secondary:hover { background-color: var(--c-accent-soft); border-color: var(--c-accent-soft); }
-.cta-button.large { padding: 14px 28px; font-size: 1rem; }
+.cta-button.large { padding: 10px 24px; font-size: 1rem; }
 .cta-button:not(.large) { padding: 10px 20px; font-size: 0.9rem; }
 .cta-button.full-width { width: 100%; max-width: 100%; text-align: center; display: block; }
 

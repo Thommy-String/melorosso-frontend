@@ -14,9 +14,11 @@
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "framer-motion": "^12.23.12",
+    "lucide-react": "^0.545.0",
     "nodemailer": "^7.0.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-lucid": "^0.0.1",
     "react-router-dom": "^7.7.1",
     "react-router-hash-link": "^2.4.3"
   },
