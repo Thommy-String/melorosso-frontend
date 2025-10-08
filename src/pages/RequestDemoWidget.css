@@ -98,7 +98,7 @@
 
 /* Contenuto dello step */
 .mr-step-content {
-  padding-bottom: 24px;
+  padding-bottom: 64px;
 }
 
 .mr-title-wrapper {
@@ -118,7 +118,7 @@
 }
 
 .mr-step-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--mr-text-primary);
   margin: 0;
@@ -134,6 +134,7 @@
 
 .mr-step-description {
   font-size: 14px;
+  font-weight: 500;
   color: var(--mr-text-secondary);
   line-height: 1.5;
   margin-top: 8px;
@@ -344,7 +345,7 @@
 
   /* Le dimensioni dei font rimangono corrette */
   .mr-step-description {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
   }
 

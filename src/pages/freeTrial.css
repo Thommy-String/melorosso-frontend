@@ -29,7 +29,7 @@
 }
 
 .free-trial-title {
-  font-size: 1.8rem; /* un po’ più piccolo del tuo FinalCTA */
+  font-size: 1.8rem;
   margin: 0;
 }
 
@@ -67,4 +67,76 @@
 .no-card-text {
   font-size: 0.9rem;
   color: #333;
+}
+
+/* ===== Stili per il Pop-up (Modal) ===== */
+
+.demo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end; 
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.demo-modal-content {
+  background-color: white;
+  padding: 32px;
+  border-radius: 24px 24px 0 0; 
+  width: 100%;
+
+  max-height: 80vh; 
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+  /* NUOVO: Ripristinata animazione precedente */
+  animation: slideUp 0.4s ease-out; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.demo-modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.demo-modal-close {
+  position: sticky;
+  top: 0px;
+  float: right;
+  margin-right: -5px;
+  z-index: 10; 
+  background: none;
+  border: none;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s ease;
+}
+
+.demo-modal-close:hover {
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .demo-modal-content {
+    max-height: 90vh;
+    padding: 32px 22px 32px 0px;
+  }
+}
+
+/* Animazioni */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* NUOVO: Ripristinata animazione precedente */
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }

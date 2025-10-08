@@ -13,7 +13,7 @@ type FeatureItem = {
     image: string;
     imageAlt: string;
     eyebrow: string;
-    title: string;
+    
     body: string;
 };
 
@@ -22,52 +22,52 @@ const ITEMS: FeatureItem[] = [
         id: "ceramic-shield",
         image: chatting,
         imageAlt: "Chat dell’assistente che risponde subito",
-        eyebrow: "Instancabile",
-        title: "Sempre online.",
+        eyebrow: "Online 24/7 sul tuo sito",
+       
         body:
-            "Risponde in pochi secondi, 24/7. Mai più clienti persi."
+            "Non si ferma mai. Accoglie, risponde e vende anche quando non ci sei. Mai più clienti persi dal tuo sito."
     },
     {
         id: "tasto-azione",
         image: lavagna,
         imageAlt: "Suggerimenti mirati con pulsante Acquista",
         eyebrow: "Su misura",
-        title: "Addestrato sui tuoi prodotti e servizi.",
+       
         body:
-            "Non è un chatbot generico. Conosce i tuoi orari, documenti, prodotti e servizi. Risponde come un vero esperto del tuo staff interno."
+            "Non dà risposte generiche. Conosce i tuoi orari, prodotti e servizi. Fa sembrare il tuo sito più professionale."
     },
      {
         id: "clienti",
         image: catturaClienti,
         imageAlt: "",
-        eyebrow: "Furbo",
-        title: "Cattura clienti.",
-        body: "Raccoglie nome, email automaticamente ai clienti che mostrano interesse e intenzione."
+        eyebrow: "Cattura clienti",
+        
+        body: "Raccoglie i dati dei clienti che mostrano interesse. Li vedrai nella tuo pannello di controllo."
     },
     {
         id: "usb-c",
         image: strettaDiMano,
         imageAlt: "Lead inviati a CRM e email",
         eyebrow: "Eccellente venditore",
-        title: "Vende per te.",
+       
         body:
-        "Propone il prodotto giusto a seconda delle domande del cliente. Suggerisce, convince, conclude. Automaticamente."
+        "Propone il prodotto giusto a seconda delle domande del cliente. Suggerisce, convince, conclude."
     },
     {
         id: "rapido",
         image: correre,
         imageAlt: "Assistente online anche di notte",
         eyebrow: "Veloce",
-        title: "Risponde subito.",
-        body: "Per i tuoi clienti, ogni secondo conta. Risponde 2,7 volte più veloce della concorrenza."
+        
+        body: "Nessun cliente aspetta. Risponde 2,7 volte più veloce rispetto ad altri chatbot."
     },
     {
         id: "batteria",
         image: easyInstall,
         imageAlt: "Assistente online anche di notte",
-        eyebrow: "Configurazione",
-        title: "Te lo installiamo noi",
-        body: "Ti forniamo noi un frammento di codice. Non devi fare nulla tu. Copia, incolla, fatto."
+        eyebrow: "Installazione",
+        
+        body: "Ti forniamo noi tutto, dalla demo all'installazione. Non devi fare nulla tu."
     },
 
     
@@ -81,9 +81,7 @@ const FeatureCard: React.FC<{ item: FeatureItem }> = ({ item }) => (
 
         <div className="ft-copy">
             <p className="ft-eyebrow">{item.eyebrow}</p>
-            <h3 id={`${item.id}-title`} className="ft-title">
-                {item.title}
-            </h3>
+            
             <p className="ft-body">{item.body}</p>
         </div>
     </article>

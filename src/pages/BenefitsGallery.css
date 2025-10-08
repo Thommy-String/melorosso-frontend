@@ -1,24 +1,24 @@
 /* --------- Base / Tokens --------- */
 :root {
   --ft-bg: #ffffff;
-  --ft-page: #ffffff;             /* sfondo bianco */
-  --ft-text: #1d1d1f;             /* Apple text */
-  --ft-muted: rgb(110, 110, 115);            /* Apple gray */
-  --ft-border: #e6e6eb;           /* hairline */
-  --ft-radius: 28px;              /* raggio pannelli immagine */
-  --ft-gap: 24px;                 /* gap tra colonne */
-  --ft-col-pad: 12px;             /* padding interno griglia su mobile */
-  --ft-maxw: 1200px;              /* larghezza massima contenuto */
+  --ft-page: #ffffff;
+  --ft-text: #1d1d1f;
+  --ft-muted: rgb(110, 110, 115);
+  --ft-border: #e6e6eb;
+  --ft-radius: 28px;
+  --ft-gap: 24px;
+  --ft-col-pad: 12px;
+  --ft-maxw: 1200px;
   --ft-shadow: 0 0 0 1px var(--ft-border) inset, 0 6px 18px rgba(0,0,0,.06);
   --ft-eyebrow-size: clamp(12px, 1.1vw, 13px);
   --ft-title-size: clamp(18px, 1.8vw, 22px);
   --ft-body-size: clamp(15px, 1.25vw, 16px);
-  --ft-card-w: 300px;             /* larghezza fissa card su schermi grandi */
+  --ft-card-w: 200px;             /* LEGGERMENTE PIÙ PICCOLO: da 210px */
 }
 
 .ft-section {
-  background: var(--ft-page);
-  padding-inline: clamp(24px, 5vw, 128px); /* padding simmetrico e fluido: niente appiccicato ai lati a qualsiasi larghezza */
+  background: transparent;
+  padding-inline: clamp(24px, 5vw, 128px);
   padding: 0px 0px 64px 0px;
 }
 
@@ -26,15 +26,15 @@
   position: relative;
   margin-inline: auto;
   max-width: var(--ft-maxw);
-  padding: clamp(28px, 6vw, 56px) var(--ft-col-pad);
+  padding: clamp(0px, 6vw, 0px) var(--ft-col-pad);
 }
 
 .ft-grid {
   display: flex;
-  flex-wrap: nowrap;              /* sempre su una sola riga */
-  justify-content: center;        /* centrato orizzontalmente */
+  flex-wrap: nowrap;
+  justify-content: center;
   gap: var(--ft-gap);
-  overflow-x: auto;               /* scroll solo quando serve (mobile) */
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
   padding-bottom: 8px;
@@ -44,10 +44,10 @@
 .ft-card {
   display: flex;
   flex-direction: column;
-  gap: 18px;                      /* spazio tra immagine e testo */
+  gap: 18px;
   color: var(--ft-text);
   width: var(--ft-card-w);
-  flex: 0 0 var(--ft-card-w);     /* evita crescita/contrazione diversa */
+  flex: 0 0 var(--ft-card-w);
   scroll-snap-align: start;
 }
 
@@ -58,23 +58,22 @@
   border-radius: var(--ft-radius);
   box-shadow: var(--ft-shadow);
   overflow: hidden;
-  aspect-ratio: 1 / 1;            /* immagini perfettamente quadrate */
+  aspect-ratio: 1 / 1;
   isolation: isolate;
 }
 
-/* immagine edge-to-edge */
 .ft-image {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
-  transform: translateZ(0);       /* evita blur su alcuni browser */
+  transform: translateZ(0);
 }
 
 /* --------- Copy --------- */
 .ft-copy {
-  padding-inline: clamp(0px, 1vw, 4px); /* micro allineamento */
-  max-width: 75%;
+  padding-inline: clamp(0px, 1vw, 4px);
+  max-width: 100%; 
 }
 
 .ft-eyebrow {
@@ -95,32 +94,25 @@
   margin: 0;
   font: 400 var(--ft-body-size)/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: rgb(110, 110, 115);
-  max-width: 64ch;                /* lunghezza riga leggibile */
+  max-width: 64ch;
 }
 
 /* --------- Micro-rifiniture visive --------- */
-/* Spazio leggermente maggiore sotto i paragrafi lunghi (come nello screenshot) */
 .ft-card .ft-body + .ft-body { margin-top: 10px; }
 
-/* Allineamento delle carte quando i testi hanno lunghezze diverse */
 .ft-card { align-self: start; }
 
-/* Riduce il gap su schermi molto piccoli per aderire meglio al layout Apple */
 @media (max-width: 380px) {
   :root { --ft-gap: 20px; }
 }
 
-/* Focus styles accessibili senza rovinare l’estetica */
 .ft-card:focus-within .ft-imageFrame {
   box-shadow: 0 0 0 2px #0071e3 inset, 0 10px 24px rgba(0,0,0,.08);
 }
 
-
-
 /* === Apple-like Typography mappings === */
 .ps-swatch-secondary, .swatch-secondary, .ft-eyebrow { color: #6e6e73; }
 
-/* Eyebrow */
 .typography-ps-card-eyebrow, .ft-eyebrow {
   font-size: 14px;
   line-height: 1.2857742857;
@@ -129,9 +121,8 @@
   font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
-/* Headline (title) */
 .typography-ps-card-headline, .ft-title {
-  font-size: 19px;                /* più piccolo del precedente */
+  font-size: 19px;
   line-height: 1.2105263158;
   font-weight: 600;
   letter-spacing: .012em;
@@ -139,16 +130,14 @@
   margin: 0 0 10px 0;
 }
 
-/* Body */
 .typography-ps-card-body, .ft-body {
   font-size: var(--ft-body-size);
-  line-height: 1.55;              /* default desktop */
-  font-weight: 400;               /* più “bold” come nello screenshot */
+  line-height: 1.55;
+  font-weight: 400;
   letter-spacing: -0.016em;
   font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
-/* Body mobile sizing per <=734px */
 @media (max-width: 734px) {
   .typography-ps-card-body, .ft-body {
     font-size: 14px;
@@ -160,7 +149,7 @@
 }
 
 @media (max-width: 734px) {
-  :root { --ft-card-w: min(calc(100vw - 120px), 260px); } /* limite massimo anche su mobile */
+  :root { --ft-card-w: min(calc(100vw - 80px), 180px); } /* LEGGERMENTE PIÙ PICCOLO: da 190px */
 }
 
 /* Hide horizontal scrollbar across browsers */
@@ -168,56 +157,53 @@
 .ft-grid::-webkit-scrollbar { display: none; }
 
 @media (min-width: 1440px) {
-  :root { --ft-card-w: 320px; }
+  :root { --ft-card-w: 210px; } /* LEGGERMENTE PIÙ PICCOLO: da 220px */
 }
 @media (min-width: 735px) {
   .ft-grid {
-    overflow-x: visible;          /* niente overflow su desktop */
-    scroll-snap-type: none;       /* disabilita snap */
-    justify-content: center;      /* centra la riga */
+    overflow-x: visible;
+    scroll-snap-type: none;
+    justify-content: center;
   }
 }
 
 @media (max-width: 734px) {
   .ft-grid {
-    overflow-x: auto;             /* mostra overflow su mobile */
+    overflow-x: auto;
     scroll-snap-type: x proximity;
-    justify-content: flex-start;       /* partire sempre dalla prima card */
-    padding-right: 32px;                          /* niente padding a destra su mobile per allinearsi al bordo */
+    justify-content: flex-start;
+    padding-right: 32px;
   }
   .ft-section {
-    padding-right: 0;                          /* niente padding-right su mobile */
-    padding-left: clamp(16px, 6vw, 24px);      /* sempre un po' di aria a sinistra anche a ~150px */
+    padding-right: 0;
+    padding-left: clamp(16px, 6vw, 24px);
   }
   .ft-container { padding-right: 0; }
 }
 
-/* Mid-range (tablet portrait): ancora carosello con aria ai lati */
 @media (min-width: 735px) and (max-width: 850px) {
-  :root { --ft-card-w: 340px; }  /* più grandi dai ~750px */
+  :root { --ft-card-w: 220px; }  /* LEGGERMENTE PIÙ PICCOLO: da 240px */
   .ft-grid {
     overflow-x: auto;
     scroll-snap-type: x proximity;
     justify-content: flex-start;
-    padding-right: 0;   /* niente spazio extra a destra, resta carosello */
+    padding-right: 0;
   }
   .ft-section {
-    padding-right: 0; /* niente padding-right in modalità carosello */
+    padding-right: 0;
   }
 }
 
-/* 450–499px card width cap */
 @media (min-width: 450px) and (max-width: 499px) {
-  :root { --ft-card-w: 260px; }   /* più grande su 450–499px */
+  :root { --ft-card-w: 180px; }   /* LEGGERMENTE PIÙ PICCOLO: da 190px */
 }
 
 @media (min-width: 500px) and (max-width: 700px) {
-  :root { --ft-card-w: 320px; }   /* più grandi già dai 500px */
+  :root { --ft-card-w: 210px; }   /* LEGGERMENTE PIÙ PICCOLO: da 220px */
 }
 
-/* 851–1023px carousel with side padding */
 @media (min-width: 851px) and (max-width: 1023px) {
-  :root { --ft-card-w: 340px; }
+  :root { --ft-card-w: 220px; } /* LEGGERMENTE PIÙ PICCOLO: da 240px */
   .ft-grid {
     overflow-x: auto;
     scroll-snap-type: x proximity;
@@ -227,13 +213,12 @@
   }
   .ft-section {
     padding-left: clamp(24px, 6vw, 64px);
-    padding-right: 0; /* niente padding-right in modalità carosello */
+    padding-right: 0;
   }
 }
 
-/* Desktop 1024px and up: no carousel, smaller card width */
 @media (min-width: 1024px) {
-  :root { --ft-card-w: 360px; }
+  :root { --ft-card-w: 220px; } /* LEGGERMENTE PIÙ PICCOLO: da 240px */
   .ft-grid {
     overflow-x: visible;
     scroll-snap-type: none;
@@ -245,7 +230,7 @@
 .ft-controls {
   position: absolute;
   right: clamp(12px, 4vw, 28px);
-  bottom: clamp(12px, 3vw, 2px);
+  bottom: clamp(0px, 3vw, 0px);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -259,7 +244,7 @@
   height: 44px;
   border: 0;
   border-radius: 999px;
-  background: #f2f2f7;                 /* iOS-style chip */
+  background: #f2f2f7;
   box-shadow: 0 1px 0 rgba(0,0,0,.02), 0 1.5px 4px rgba(0,0,0,.08);
   color: #3a3a3c;
   font-size: 18px;
@@ -274,7 +259,6 @@
 .ft-nav:active { transform: translateY(0); }
 .ft-nav:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
 
-/* disattiva il bottone quando non serve (se lo farai via TSX) */
 .ft-nav[disabled] { opacity: .45; cursor: default; }
 
 
@@ -284,10 +268,10 @@
 }
 
 @media (min-width: 716px) and (max-width: 734px) {
-  :root { --ft-card-w: 300px; }           /* più grande ma controllata su 716–734px */
+  :root { --ft-card-w: 200px; }           /* LEGGERMENTE PIÙ PICCOLO: da 210px */
   .ft-grid {
     justify-content: flex-start;
-    padding-right: 0;                     /* nessuno spazio a destra sul mobile */
+    padding-right: 0;
   }
   .ft-section {
     padding-left: clamp(16px, 5vw, 24px);
@@ -296,18 +280,22 @@
 }
 
 @media (min-width: 735px) and (max-width: 749px) {
-  :root { --ft-card-w: 320px; }           /* più grandi su 735–749px */
+  :root { --ft-card-w: 210px; }           /* LEGGERMENTE PIÙ PICCOLO: da 220px */
 }
 
-/* ===== Fix: remove horizontal page scroll on desktop (appears ~1039px) =====
-   Some browsers create a 1–2px overflow because of sub‑pixel calculations on
-   flex gap / rounded cards. On desktop we don't need horizontal scrolling, so
-   we clip it at the section level. This prevents the whole page from moving
-   horizontally while keeping mobile carousel scroll intact. */
 @media (min-width: 1024px) {
-  .ft-section { overflow-x: clip; /* fallback below for older browsers */ }
-  /* Safari <16 / older browsers */
+  .ft-section { overflow-x: clip; }
   .ft-section { overflow-x: hidden; }
-  /* Defensive limits to avoid layout expansion */
   .ft-grid { max-width: 100%; overflow-x: hidden; }
+}
+
+/* NUOVO: Layout per schermi molto grandi (es. >1600px) */
+@media (min-width: 1600px) {
+  :root {
+    --ft-maxw: 1400px; /* Allarga il contenitore principale */
+    --ft-card-w: 210px; /* Puoi definire una larghezza specifica per questo breakpoint se vuoi */
+  }
+  .ft-grid {
+    justify-content: center; /* Centra le card se c'è abbastanza spazio per mostrarle tutte */
+  }
 }

@@ -27,6 +27,7 @@ import Reviews from './pages/Reviews';
 import RequestDemoWidget from './pages/RequestDemoWidget';
 
 
+
 // --- Componenti Icona (SVG per pulizia e performance) ---
 const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>;
 
@@ -181,17 +182,11 @@ const Header = () => {
         {/* Nav desktop */}
         <nav className="main-nav">
           <HashLink smooth to="/#features">Funzionalità</HashLink>
-          <HashLink smooth to="/#pricing">Prezzi</HashLink>
+          <HashLink smooth to="/#pricing">Piano gratis</HashLink>
         </nav>
 
         {/* CTA + Hamburger (hamburger visibile solo su mobile via CSS) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <a
-            href="https://ai-frontend-melorosso.pages.dev/#/login"
-            className="cta-button secondary large"
-          >
-            Accedi
-          </a>
           <button
             type="button"
             aria-label={isMenuOpen ? 'Chiudi menu' : 'Apri menu'}
@@ -246,29 +241,38 @@ const Header = () => {
 const HeroSection = () => (
   <section className="hero-section">
     <div className="container">
-      <h1 className="section-title">
-        Ottieni il tuo {" "}
-        <span
-          style={{
-            background: "linear-gradient(90deg,rgb(85, 0, 255), rgba(255, 89, 0, 0.97))",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontWeight: "inherit",
-          }}
-        >
-          Agente AI gratis
-        </span>{" "}
-         che risponde e vende 24/7 sul tuo sito.
-      </h1>
+      <div className="title-container">
 
-  <div style={{ marginTop: 32 }}/>
-     <SocialProof
+
+        <h1 className="section-title">
+          Ottieni il tuo{" "}
+          <span
+            style={{
+              background: "linear-gradient(90deg,rgb(85, 0, 255), rgba(255, 89, 0, 0.97))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontWeight: "inherit",
+            }}
+          >
+            Agente AI gratis
+          </span>{" "} su misura per il tuo sito.
+        </h1>
+      </div>
+
+    
+
+      <div style={{ marginTop: 32 }} />
+      <SocialProof
         /* avatars is optional; you can add local images later */
         rating={5}
         text="92.7% di aziende 🇮🇹 soddisfatte: il più alto in Italia."
       />
-      <div style={{ marginTop: 64 }}/>
-      
+
+
+      <div style={{ marginTop: 32 }} />
+
+      <FeatureTriptych></FeatureTriptych>
+
       <div className="hero-widget-wrapper">
         <RequestDemoWidget source="hero" />
       </div>
@@ -392,81 +396,96 @@ const Features: React.FC<{ backgroundColor?: string }> = ({ backgroundColor }) =
   </section>
 );
 
-const Pricing = () => (
-  <section id="pricing" className="pricing-section">
-    <div className="container text-center">
-      <div className="section-header small-margin">
-        <span className="section-tag">PIANI</span>
-      </div>
-      {/* Intro stile FreeTrial: immagine a sinistra + titolo + SocialProof */}
-      <div className="free-trial-header" style={{ marginTop: 8 }}>
-        <div className="free-trial-image-wrapper">
-          <img
-            src={salesmanRedApple}
-            alt="Agente AI"
-            className="free-trial-image"
-            loading="lazy"
-            decoding="async"
+const Pricing = () => {
+  // Stato e funzioni per gestire il pop-up
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  return (
+    <>
+      <section id="pricing" className="pricing-section">
+        <div className="container text-center">
+          <div className="section-header small-margin">
+            <span className="section-tag">PIANI</span>
+          </div>
+          <div className="free-trial-header" style={{ marginTop: 8 }}>
+            <div className="free-trial-image-wrapper">
+              <img
+                src={salesmanRedApple}
+                alt="Agente AI"
+                className="free-trial-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <h2 className="free-trial-title">Demo gratuita</h2>
+          </div>
+
+          <SocialProof
+            rating={5}
+            text="92.7% di aziende 🇮🇹 soddisfatte."
           />
-        </div>
-        <h2 className="free-trial-title">Demo gratuita</h2>
-      </div>
 
-      <SocialProof
-        rating={5}
-        text="92.7% di aziende 🇮🇹 soddisfatte."
-      />
+          <div className="pricing-grid">
+            {plansData.map(plan => (
+              <div key={plan.id} className={`pricing-card ${plan.isPopular ? 'popular' : ''}`}>
+                {plan.isPopular && <span className="popular-badge">Più Scelto</span>}
+                <h3 className="pricing-plan-name">{plan.name}</h3>
+                <p className="pricing-plan-description">{plan.description}</p>
+                <p className="pricing-plan-price">
+                  €{plan.price}
+                  {plan.price > 0 && <span className="price-period"> / mese</span>}
+                </p>
+                <ul className="pricing-features-list">
+                  {plan.features.map((feature, index) => (
+                    <li key={feature.text + index}>
+                      {feature.icon} {feature.text}
+                    </li>
+                  ))}
+                </ul>
+                
+                {/* Bottone che ora apre il pop-up */}
+                <button
+                  onClick={openModal}
+                  className={`cta-button primary full-width`}
+                >
+                  Richiedi una demo gratis
+                </button>
 
-      <div className="pricing-grid">
-        {/* Mappatura dinamica dei piani */}
-        {plansData.map(plan => (
-          <div key={plan.id} className={`pricing-card ${plan.isPopular ? 'popular' : ''}`}>
-            {plan.isPopular && <span className="popular-badge">Più Scelto</span>}
-            <h3 className="pricing-plan-name">{plan.name}</h3>
-            <p className="pricing-plan-description">{plan.description}</p>
-            <p className="pricing-plan-price">
-              €{plan.price}
-              {plan.price > 0 && <span className="price-period"> / mese</span>}
-            </p>
-            <ul className="pricing-features-list">
-              {plan.features.map((feature, index) => (
-                <li key={feature.text + index}>
-                  {feature.icon} {feature.text}
-                </li>
-              ))}
-            </ul>
-            {/* MODIFICA QUI: Usa <Link> invece di <a> per navigare alla pagina di contatto */}
-            <Link
-              to={`/contact?plan=${encodeURIComponent(plan.name)}`}
-              className={`cta-button primary full-width`}
-            >
-              Richiedi una demo gratis
-            </Link>
-            <p style={{ fontSize: '0.9rem', color: 'var(--c-text-secondary)', marginTop: 8, textAlign: 'center' }}>
-              Ti contattiamo noi. Ti prepariamo in giornata una demo su misura del tuo agente, senza impegno. Avrai un link privato per testare come risponderebbe ai clienti sul sito.
-            </p>
+                <p style={{ fontSize: '0.9rem', color: 'var(--c-text-secondary)', marginTop: 8, textAlign: 'center' }}>
+                  Ti prepariamo in giornata una demo su misura del tuo agente, senza impegno. Avrai un link privato per testare come risponderebbe ai clienti sul sito.
+                </p>
+              </div>
+            ))}
+
+            <div className="pricing-card enterprise">
+              <div className="enterprise-text-content">
+                <h3 className="pricing-plan-name">Piano Sartoriale</h3>
+                <p className="pricing-plan-description">
+                  Hai esigenze specifiche o volumi di traffico molto elevati? Creiamo una soluzione su misura per te.
+                </p>
+              </div>
+              <Link to="/contact?plan=Sartoriale" className="cta-button secondary large">
+                Contattaci
+              </Link>
+            </div>
           </div>
-        ))}
-
-        {/* Card per il piano Sartoriale/Enterprise (CORRETTA) */}
-        <div className="pricing-card enterprise">
-          {/* NUOVO CONTENITORE per il blocco di testo */}
-          <div className="enterprise-text-content">
-            <h3 className="pricing-plan-name">Piano Sartoriale</h3>
-            <p className="pricing-plan-description">
-              Hai esigenze specifiche o volumi di traffico molto elevati? Creiamo una soluzione su misura per te.
-            </p>
-          </div>
-
-          {/* Bottone a destra (ho usato le classi standard per coerenza) */}
-          <Link to="/contact?plan=Sartoriale" className="cta-button secondary large">
-            Contattaci
-          </Link>
         </div>
-      </div>
-    </div>
-  </section>
-);
+      </section>
+
+      {/* Pop-up (Modal) che viene mostrato condizionalmente */}
+      {isModalOpen && (
+        <div className="demo-modal-overlay" onClick={closeModal}>
+          <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="demo-modal-close" onClick={closeModal} aria-label="Chiudi pop-up">&times;</button>
+            <RequestDemoWidget source="pricing-page-modal" />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 
 const Footer = () => (
@@ -492,7 +511,6 @@ function App() {
       <HeroSection />
 
       <main>
-        <FeatureTriptych></FeatureTriptych>
         <Reviews />
         <FreeTrial></FreeTrial>
         <UseCaseShowcase></UseCaseShowcase>

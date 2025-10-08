@@ -1,8 +1,9 @@
-import { HashLink } from "react-router-hash-link";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import salesmanPointsToRight from "../images/salesmanPointsToRight.png"; 
 import "./FreeTrial.css";
 import SocialProof from "./SocialProof";
+import RequestDemoWidget from "./RequestDemoWidget"; // Assicurati che il percorso sia corretto
 
 // Icone minimal per la card (SVG inline)
 const ChatIcon = () => (
@@ -47,71 +48,85 @@ const freePlan = {
   ],
 };
 
-const FreeTrial = () => (
-  <section className="free-trial">
-    <div className="free-trial-container">
+const FreeTrial = () => {
+  // Stato per controllare la visibilità del pop-up
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-      {/* Immagine piccola + titolo fianco a fianco */}
-      <div className="free-trial-header">
-        <div className="free-trial-image-wrapper">
-          <img
-            src={salesmanPointsToRight}
-            alt="Prova gratis la demo"
-            className="free-trial-image"
-            loading="lazy"
-            decoding="async"
+  // Funzioni per aprire e chiudere
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  return (
+    <>
+      <section className="free-trial">
+        <div className="free-trial-container">
+
+          <div className="free-trial-header">
+            <div className="free-trial-image-wrapper">
+              <img
+                src={salesmanPointsToRight}
+                alt="Prova gratis la demo"
+                className="free-trial-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <h2 className="free-trial-title">Gratis. Per sempre.</h2>
+          </div>
+
+          <SocialProof
+            rating={5}
+            text="92.7% di aziende 🇮🇹 soddisfatte."
           />
-        </div>
-        <h2 className="free-trial-title">Gratis. Per sempre.</h2>
-        
-      </div>
-
-     
-    <SocialProof
-                    /* avatars is optional; you can add local images later */
-                    rating={5}
-                    text="92.7% di aziende 🇮🇹 soddisfatte."
-                  />
-      {/* Card piano gratuito */}
-      <div className="pricing-grid" style={{ marginTop: 24 }}>
-        <div className="pricing-card">
-          <h3 className="pricing-plan-name">{freePlan.name}</h3>
-          <p className="pricing-plan-description">{freePlan.description}</p>
-          <p className="pricing-plan-price">€{freePlan.price}</p>
-          <ul className="pricing-features-list">
-            {freePlan.features.map((f, i) => (
-              <li key={i}>
-                {f.icon} {f.text}
-              </li>
-            ))}
-          </ul>
           
-          <Link
-            to={`/contact?plan=${encodeURIComponent(freePlan.name)}`}
-            className="cta-button primary full-width"
-          >
-            Richiedi una demo gratis
-          </Link>
-          
-
-          {/* Senza carta */}
-      <div className="free-trial-no-card">
-        <img
-          className="no-card-image"
-          src="https://static.thenounproject.com/png/2028787-200.png"
-          alt=""
-        />
-        <p className="no-card-text">Senza carta. Senza impegno.</p>
-      </div>
-      <p style={{ fontSize: '0.9rem', color: 'var(--c-text-secondary)', marginTop: 8, textAlign: 'center' }}>
-            Ti contattiamo noi. Ti prepariamo in giornata una demo su misura del tuo agente, senza impegno. Avrai un link privato per testare come risponderebbe il tuo agente ai clienti sul sito.
-          </p>
+          <div className="pricing-grid" style={{ marginTop: 24 }}>
+            <div className="pricing-card">
+              <h3 className="pricing-plan-name">{freePlan.name}</h3>
+              <p className="pricing-plan-description">{freePlan.description}</p>
+              <p className="pricing-plan-price">€{freePlan.price}</p>
+              <ul className="pricing-features-list">
+                {freePlan.features.map((f, i) => (
+                  <li key={i}>
+                    {f.icon} {f.text}
+                  </li>
+                ))}
+              </ul>
+              
+              {/* Bottone che ora apre il pop-up */}
+              <button
+                onClick={openModal}
+                className="cta-button primary full-width"
+              >
+                Richiedi una demo gratis
+              </button>
+              
+              <div className="free-trial-no-card">
+                <img
+                  className="no-card-image"
+                  src="https://static.thenounproject.com/png/2028787-200.png"
+                  alt=""
+                />
+                <p className="no-card-text">Senza carta. Senza impegno.</p>
+              </div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text-secondary)', marginTop: 8, textAlign: 'center' }}>
+                Ti prepariamo in giornata una demo su misura. Avrai un link privato per testare come l'agente risponderebbe ai clienti sul tuo sito.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-    
-    </div>
-  </section>
-);
+      {/* Pop-up (Modal) che viene mostrato condizionalmente */}
+      {isModalOpen && (
+        <div className="demo-modal-overlay" onClick={closeModal}>
+          <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="demo-modal-close" onClick={closeModal} aria-label="Chiudi pop-up">&times;</button>
+            <RequestDemoWidget source="free-trial-modal" />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default FreeTrial;

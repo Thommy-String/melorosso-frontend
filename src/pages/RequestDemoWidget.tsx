@@ -32,21 +32,22 @@ interface RequestDemoProps {
 const stepsData = [
     {
         title: "Inserisci il tuo sito.",
-        description: "Lo analizziamo per capire i tuoi prodotti e servizi, così da preparare un agente con risposte intelligenti e su misura per te.",
+        description: "Lo analizziamo per capire cosa vendi e preparare un agente su misura per te.",
         largeImage: null,
         mediaType: 'image',
         titleIcon: salesmanLaptop,
     },
     {
         title: "Ottieni la demo gratis.",
-        description: "In giornata ti invieremo un link privato per accedere alla tua demo. Potrai messaggiare con l'agente fingendoti un vero cliente. Considerala una base di partenza. Il suo vero potenziale si sbloccherà quando lo perfezioneremo insieme, con le tue informazioni specifiche.",
+        description: "Analizziamo il tuo sito per creare un agente che risponde come un vero esperto del tuo staff interno. In giornata riceverai un link per testare l'agente fingendoti un cliente. Considerala una solida base di partenza. Il suo vero potenziale si sbloccherà quando lo perfezioneremo insieme.",
         largeImage: DemoAgenteAi,
         mediaType: 'video',
         titleIcon: salesmanLettera,
     },
     {
-        title: "Usa o ignora.",
-        description: "Dopo aver provato la l'agente, decidi se miglioralo e attivalo gratis sul tuo sito, o ignorare e lasciar perdere. Nessuna pressione, non verrai ricontattato. Non ci piace lo spam.",
+        title: "Usalo gratis o ignora.",
+        description: "Dopo aver provato l'agente decidi se miglioralo e attivalo gratis sul tuo sito, o ignoraci. Nessuna pressione, non verrai ricontattato. Non ci piace lo spam.",
+        mediaType: 'image',
         titleIcon: occhiolinoSalesman,
     },
 ];
@@ -67,27 +68,57 @@ const RequestDemoWidget: React.FC<RequestDemoProps> = ({ source = "hero", classN
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!siteUrl.trim()) return;
 
-        setLoading(true);
-        setCompletedStep(0);
-        setSubmittedSiteUrl(siteUrl);
 
-        try {
-            console.log("Submitting:", { siteUrl, source });
-            await new Promise(resolve => setTimeout(resolve, 1000));
+// In RequestDemoWidget.tsx
 
-            setView('processing');
-            setLoading(false);
+const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!siteUrl.trim()) return;
 
-        } catch (err) {
-            console.error("request-demo error", err);
-            setView('error');
-            setLoading(false);
-        }
+    // 1. Mostra subito lo stato di caricamento e passa alla vista "processing"
+    setLoading(true);
+    setCompletedStep(0);
+    setSubmittedSiteUrl(siteUrl);
+    setView('processing'); 
+
+    // Prepariamo i dati da inviare al backend
+    const formData = {
+        siteUrl: siteUrl,
+        source: source,
     };
+
+    try {
+        // 2. Ora, "dietro le quinte", contatta il server mentre l'utente vede la schermata "In preparazione"
+        const apiEndpoint = 'https://melorosso-contact-email.onrender.com/api/request-demo';
+
+        const response = await fetch(apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+
+        // Se il server risponde con un errore (dopo essersi svegliato), lo gestiamo
+        if (!response.ok) {
+            // Se fallisce, l'utente verrà mandato alla schermata di errore
+            throw new Error('La richiesta al server è fallita');
+        }
+        
+        // Se tutto va a buon fine, la richiesta è completata e l'utente ha già visto la schermata corretta.
+        // Il pulsante di loading si disattiverà nel blocco 'finally'.
+
+    } catch (err) {
+        console.error("request-demo error", err);
+        setView('error'); // Se c'è un errore, l'utente lo vedrà
+    } finally {
+        // Questa parte non è più strettamente necessaria se il form scompare,
+        // ma la lasciamo per sicurezza.
+        setLoading(false);
+    }
+};
+    // ========= FINE MODIFICA =========
 
     const handleReset = () => {
         setView('form');
@@ -120,7 +151,6 @@ const RequestDemoWidget: React.FC<RequestDemoProps> = ({ source = "hero", classN
                                 <div className="mr-title-wrapper">
                                     <img src={s.titleIcon} alt="" className="mr-title-icon" />
 
-                                    {/* NUOVO: Contenitore per impilare titolo e stato */}
                                     <div className="mr-title-stack">
                                         <h3 className="mr-step-title">{s.title}</h3>
                                         {index === 1 && view === 'processing' && <StatusText />}
@@ -133,12 +163,10 @@ const RequestDemoWidget: React.FC<RequestDemoProps> = ({ source = "hero", classN
                                     <div className="mr-dynamic-content">
                                         {view === 'form' ? (
                                             <form className="mr-row" onSubmit={handleSubmit}>
-
                                                 <input type="text" inputMode="url" autoComplete="url" placeholder="Il tuo sito (es. azienda.it)" className="mr-input" value={siteUrl} onChange={(e) => setSiteUrl(e.target.value)} required disabled={loading} />
                                                 <button className="mr-btn" type="submit" aria-label="Crea la mia demo" disabled={loading}>
                                                     {loading ? 'Invio...' : (
                                                         <>
-
                                                             <SendHorizontal size={18} />
                                                         </>
                                                     )}
@@ -150,11 +178,6 @@ const RequestDemoWidget: React.FC<RequestDemoProps> = ({ source = "hero", classN
                                                     <CheckIcon />
                                                     <span className="site-name">{getDomainFromUrl(submittedSiteUrl)}</span>
                                                 </h4>
-
-
-                                                <div className="mr-status-text">
-                                                    Demo {getDomainFromUrl(submittedSiteUrl)} in costruzione...
-                                                </div>
                                                 <p className="primary-text">
                                                     Sito ricevuto! Lo stiamo analizzando per capire di cosa ti occupi e per preparare l'agente.
                                                 </p>
