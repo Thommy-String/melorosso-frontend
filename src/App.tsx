@@ -265,7 +265,7 @@ const HeroSection = () => (
       <SocialProof
         /* avatars is optional; you can add local images later */
         rating={5}
-        text="92.7% di aziende 🇮🇹 soddisfatte: il più alto in Italia."
+        text="92.7% di aziende 🇮🇹 soddisfatte: il più alto tasso in Italia."
       />
 
 

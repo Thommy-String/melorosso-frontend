@@ -13,7 +13,7 @@
   --ft-eyebrow-size: clamp(12px, 1.1vw, 13px);
   --ft-title-size: clamp(18px, 1.8vw, 22px);
   --ft-body-size: clamp(15px, 1.25vw, 16px);
-  --ft-card-w: 200px;             /* LEGGERMENTE PIÙ PICCOLO: da 210px */
+  --ft-card-w: 200px;
 }
 
 .ft-section {
@@ -149,7 +149,8 @@
 }
 
 @media (max-width: 734px) {
-  :root { --ft-card-w: min(calc(100vw - 80px), 180px); } /* LEGGERMENTE PIÙ PICCOLO: da 190px */
+  /* MODIFICATO: Aumentata la larghezza massima su mobile */
+  :root { --ft-card-w: min(calc(100vw - 64px), 230px); }
 }
 
 /* Hide horizontal scrollbar across browsers */
@@ -157,7 +158,7 @@
 .ft-grid::-webkit-scrollbar { display: none; }
 
 @media (min-width: 1440px) {
-  :root { --ft-card-w: 210px; } /* LEGGERMENTE PIÙ PICCOLO: da 220px */
+  :root { --ft-card-w: 210px; }
 }
 @media (min-width: 735px) {
   .ft-grid {
@@ -182,7 +183,7 @@
 }
 
 @media (min-width: 735px) and (max-width: 850px) {
-  :root { --ft-card-w: 220px; }  /* LEGGERMENTE PIÙ PICCOLO: da 240px */
+  :root { --ft-card-w: 220px; }
   .ft-grid {
     overflow-x: auto;
     scroll-snap-type: x proximity;
@@ -195,15 +196,16 @@
 }
 
 @media (min-width: 450px) and (max-width: 499px) {
-  :root { --ft-card-w: 180px; }   /* LEGGERMENTE PIÙ PICCOLO: da 190px */
+  /* MODIFICATO: Aumentata la larghezza massima in questo range */
+  :root { --ft-card-w: 200px; }
 }
 
 @media (min-width: 500px) and (max-width: 700px) {
-  :root { --ft-card-w: 210px; }   /* LEGGERMENTE PIÙ PICCOLO: da 220px */
+  :root { --ft-card-w: 200px; }
 }
 
 @media (min-width: 851px) and (max-width: 1023px) {
-  :root { --ft-card-w: 220px; } /* LEGGERMENTE PIÙ PICCOLO: da 240px */
+  :root { --ft-card-w: 220px; }
   .ft-grid {
     overflow-x: auto;
     scroll-snap-type: x proximity;
@@ -218,7 +220,7 @@
 }
 
 @media (min-width: 1024px) {
-  :root { --ft-card-w: 220px; } /* LEGGERMENTE PIÙ PICCOLO: da 240px */
+  :root { --ft-card-w: 220px; }
   .ft-grid {
     overflow-x: visible;
     scroll-snap-type: none;
@@ -230,7 +232,7 @@
 .ft-controls {
   position: absolute;
   right: clamp(12px, 4vw, 28px);
-  bottom: clamp(0px, 3vw, 0px);
+  bottom: clamp(12px, 3vw, 2px);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -268,7 +270,7 @@
 }
 
 @media (min-width: 716px) and (max-width: 734px) {
-  :root { --ft-card-w: 200px; }           /* LEGGERMENTE PIÙ PICCOLO: da 210px */
+  :root { --ft-card-w: 200px; }
   .ft-grid {
     justify-content: flex-start;
     padding-right: 0;
@@ -280,7 +282,7 @@
 }
 
 @media (min-width: 735px) and (max-width: 749px) {
-  :root { --ft-card-w: 210px; }           /* LEGGERMENTE PIÙ PICCOLO: da 220px */
+  :root { --ft-card-w: 210px; }
 }
 
 @media (min-width: 1024px) {
@@ -289,13 +291,12 @@
   .ft-grid { max-width: 100%; overflow-x: hidden; }
 }
 
-/* NUOVO: Layout per schermi molto grandi (es. >1600px) */
 @media (min-width: 1600px) {
   :root {
-    --ft-maxw: 1400px; /* Allarga il contenitore principale */
-    --ft-card-w: 210px; /* Puoi definire una larghezza specifica per questo breakpoint se vuoi */
+    --ft-maxw: 1400px;
+    --ft-card-w: 210px;
   }
   .ft-grid {
-    justify-content: center; /* Centra le card se c'è abbastanza spazio per mostrarle tutte */
+    justify-content: center;
   }
 }

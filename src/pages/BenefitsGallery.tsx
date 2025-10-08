@@ -31,7 +31,7 @@ const ITEMS: FeatureItem[] = [
         id: "tasto-azione",
         image: lavagna,
         imageAlt: "Suggerimenti mirati con pulsante Acquista",
-        eyebrow: "Su misura",
+        eyebrow: "Su misura.",
        
         body:
             "Non dà risposte generiche. Conosce i tuoi orari, prodotti e servizi. Fa sembrare il tuo sito più professionale."
