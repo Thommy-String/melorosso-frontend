@@ -76,7 +76,7 @@ const FreeTrial = () => {
 
           <SocialProof
             rating={5}
-            text="92.7% di aziende 🇮🇹 soddisfatte."
+            text="Più di 326 agenti creati, 92.7% di aziende 🇮🇹 soddisfatte."
           />
           
           <div className="pricing-grid" style={{ marginTop: 24 }}>

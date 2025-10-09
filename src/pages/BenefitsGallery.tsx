@@ -7,6 +7,7 @@ import lavagna from '../images/salesmanLavagna.png'
 import chatting from '../images/salesmanChatting.png'
 import correre from '../images/correre.png'
 import easyInstall from '../images/easyInstall.png'
+import occhiolinoSalesman from '../images/occhiolinoSalesman.png'
 
 type FeatureItem = {
     id: string;
@@ -18,20 +19,37 @@ type FeatureItem = {
 };
 
 const ITEMS: FeatureItem[] = [
+     {
+        id: "gratis",
+        image: occhiolinoSalesman,
+        imageAlt: "Agente AI Gratis. Per sempre. Senza vincoli. Senza carta",
+        eyebrow: "Gratis. Per sempre",
+        
+        body: "Nessuna carta, nessun abbonamento, nessun limite di tempo."
+    },
     {
-        id: "ceramic-shield",
+        id: "attivo",
         image: chatting,
         imageAlt: "Chat dell’assistente che risponde subito",
-        eyebrow: "Online 24/7 sul tuo sito",
+        eyebrow: "Attivo 24/7 sul tuo sito",
        
         body:
-            "Non si ferma mai. Accoglie, risponde e vende anche quando non ci sei. Mai più clienti persi dal tuo sito."
+            "Accoglie i visitatori, risponde e vende anche quando non ci sei. Non si ferma mai."
+    },
+    {
+        id: "usb-c",
+        image: strettaDiMano,
+        imageAlt: "Lead inviati a CRM e email",
+        eyebrow: "Aiuta i visitatori a decidere.",
+       
+        body:
+        "Propone il prodotto giusto a seconda delle domande del cliente. Suggerisce, convince, conclude."
     },
     {
         id: "tasto-azione",
         image: lavagna,
         imageAlt: "Suggerimenti mirati con pulsante Acquista",
-        eyebrow: "Su misura.",
+        eyebrow: "Conosce il tuo business",
        
         body:
             "Non dà risposte generiche. Conosce i tuoi orari, prodotti e servizi. Fa sembrare il tuo sito più professionale."
@@ -40,24 +58,15 @@ const ITEMS: FeatureItem[] = [
         id: "clienti",
         image: catturaClienti,
         imageAlt: "",
-        eyebrow: "Cattura clienti",
+        eyebrow: "Cattura contatti",
         
-        body: "Raccoglie i dati dei clienti che mostrano interesse. Li vedrai nella tuo pannello di controllo."
-    },
-    {
-        id: "usb-c",
-        image: strettaDiMano,
-        imageAlt: "Lead inviati a CRM e email",
-        eyebrow: "Eccellente venditore",
-       
-        body:
-        "Propone il prodotto giusto a seconda delle domande del cliente. Suggerisce, convince, conclude."
+        body: "Ogni volta che un visitatore mostra interesse, il tuo agente salva nome, email e richiesta."
     },
     {
         id: "rapido",
         image: correre,
         imageAlt: "Assistente online anche di notte",
-        eyebrow: "Veloce",
+        eyebrow: "Risposte Istantanee",
         
         body: "Nessun cliente aspetta. Risponde 2,7 volte più veloce rispetto ad altri chatbot."
     },
@@ -65,10 +74,11 @@ const ITEMS: FeatureItem[] = [
         id: "batteria",
         image: easyInstall,
         imageAlt: "Assistente online anche di notte",
-        eyebrow: "Installazione",
+        eyebrow: "Te lo creiamo noi.",
         
-        body: "Ti forniamo noi tutto, dalla demo all'installazione. Non devi fare nulla tu."
+        body: "Ti forniamo noi tutto, dalla demo all'installazione. Non devi alzare un dito."
     },
+   
 
     
 ];

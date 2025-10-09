@@ -1,5 +1,17 @@
 /* src/App.css */
 
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
 
 html {
   scroll-behavior: smooth;

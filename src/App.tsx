@@ -265,7 +265,7 @@ const HeroSection = () => (
       <SocialProof
         /* avatars is optional; you can add local images later */
         rating={5}
-        text="92.7% di aziende 🇮🇹 soddisfatte: il più alto tasso in Italia."
+        text="Più di 326  creati. 92.7% di aziende 🇮🇹 soddisfatte."
       />
 
 
@@ -275,11 +275,6 @@ const HeroSection = () => (
 
       <div className="hero-widget-wrapper">
         <RequestDemoWidget source="hero" />
-      </div>
-
-      <div className='no-card-required-container'>
-        <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
-        <p className="no-card-text">Senza carta. Senza limiti di tempo.</p>
       </div>
     </div>
   </section>
@@ -424,7 +419,7 @@ const Pricing = () => {
 
           <SocialProof
             rating={5}
-            text="92.7% di aziende 🇮🇹 soddisfatte."
+            text="Più di 326 agenti creati, 92.7% di aziende 🇮🇹 soddisfatte."
           />
 
           <div className="pricing-grid">

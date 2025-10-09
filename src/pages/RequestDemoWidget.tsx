@@ -46,7 +46,7 @@ const stepsData = [
     },
     {
         title: "Usalo gratis o ignora.",
-        description: "Dopo aver provato l'agente decidi se miglioralo e attivalo gratis sul tuo sito, o ignoraci. Nessuna pressione, non verrai ricontattato. Non ci piace lo spam.",
+        description: "Dopo aver provato l'agente decidi se migliorarlo e attivarlo gratis sul tuo sito, o ignoraci. Nessuna pressione, non verrai ricontattato. Non ci piace lo spam.",
         mediaType: 'image',
         titleIcon: occhiolinoSalesman,
     },
@@ -137,6 +137,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     const currentStepIndex = view === 'form' ? 0 : 1;
 
     return (
+        
         <div className={`mr-demo-widget ${className || ""}`}>
             <div className="mr-steps-container">
                 {stepsData.map((s, index) => {
@@ -215,7 +216,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                         </div>
                     );
                 })}
+                
             </div>
+            <div className='no-card-required-container'>
+        <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
+        <p className="no-card-text">Senza carta. Senza limiti di tempo.</p>
+      </div>
         </div>
     );
 };
