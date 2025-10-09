@@ -265,7 +265,7 @@ const HeroSection = () => (
       <SocialProof
         /* avatars is optional; you can add local images later */
         rating={5}
-        text="Più di 326  creati. 92.7% di aziende 🇮🇹 soddisfatte."
+        text="Più di 326 agenti creati. 92.7% di aziende 🇮🇹 soddisfatte."
       />
 
 
