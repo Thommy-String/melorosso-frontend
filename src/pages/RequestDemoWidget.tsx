@@ -8,6 +8,13 @@ import salesmanLettera from '../images/salesmanLetter.png';
 import occhiolinoSalesman from '../images/occhiolinoSalesman.png';
 import DemoAgenteAi from '../videos/Demo-AgenteAi.mp4';
 
+// Google Ads conversion helper (decl for TS)
+declare global {
+  interface Window {
+    gtag_report_conversion?: (url?: string) => boolean | void;
+  }
+}
+
 // --- Icone e Componenti ---
 const CheckIcon = () => (
     <svg className="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -165,7 +172,13 @@ const RequestDemoWidget: React.FC<RequestDemoProps> = ({ source = "hero", classN
                                         {view === 'form' ? (
                                             <form className="mr-row" onSubmit={handleSubmit}>
                                                 <input type="text" inputMode="url" autoComplete="url" placeholder="Il tuo sito (es. azienda.it)" className="mr-input" value={siteUrl} onChange={(e) => setSiteUrl(e.target.value)} required disabled={loading} />
-                                                <button className="mr-btn" type="submit" aria-label="Crea la mia demo" disabled={loading}>
+                                                <button
+                                                  className="mr-btn"
+                                                  type="submit"
+                                                  aria-label="Crea la mia demo"
+                                                  disabled={loading}
+                                                  onClick={() => { try { window.gtag_report_conversion && window.gtag_report_conversion(); } catch (_) {} }}
+                                                >
                                                     {loading ? 'Invio...' : (
                                                         <>
                                                             <SendHorizontal size={18} />

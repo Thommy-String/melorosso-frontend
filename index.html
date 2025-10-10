@@ -10,6 +10,24 @@
 
   gtag('config', 'AW-17638729340');
 </script>
+<script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17638729340/ut7rCJjPw6obEPzM5tpB',
+        'value': 1.0,
+        'currency': 'EUR',
+        'event_callback': callback
+      });
+    }
+    return false;
+  }
+</script>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://cdn.melorosso.it/chatbot-frontend.css">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
