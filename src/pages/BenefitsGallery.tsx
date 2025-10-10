@@ -4,14 +4,15 @@ import "./BenefitsGallery.css";
 import strettaDiMano from '../images/strettaDiMano.png';
 import catturaClienti from '../images/catturaCliente.png'
 import lavagna from '../images/salesmanLavagna.png'
-import chatting from '../images/salesmanChatting.png'
 import correre from '../images/correre.png'
 import easyInstall from '../images/easyInstall.png'
 import occhiolinoSalesman from '../images/occhiolinoSalesman.png'
+import attivo247 from '../videos/agente247.mov';
 
 type FeatureItem = {
     id: string;
-    image: string;
+    image?: string;
+    video?: string;
     imageAlt: string;
     eyebrow: string;
     
@@ -29,10 +30,10 @@ const ITEMS: FeatureItem[] = [
     },
     {
         id: "attivo",
-        image: chatting,
+        video: attivo247,
         imageAlt: "Chat dell’assistente che risponde subito",
         eyebrow: "Attivo 24/7 sul tuo sito",
-       
+        
         body:
             "Accoglie i visitatori, risponde e vende anche quando non ci sei. Non si ferma mai."
     },
@@ -40,7 +41,7 @@ const ITEMS: FeatureItem[] = [
         id: "usb-c",
         image: strettaDiMano,
         imageAlt: "Lead inviati a CRM e email",
-        eyebrow: "Aiuta i visitatori a decidere.",
+        eyebrow: "Aiuta i visitatori a decidere",
        
         body:
         "Propone il prodotto giusto a seconda delle domande del cliente. Suggerisce, convince, conclude."
@@ -74,7 +75,7 @@ const ITEMS: FeatureItem[] = [
         id: "batteria",
         image: easyInstall,
         imageAlt: "Assistente online anche di notte",
-        eyebrow: "Te lo creiamo noi.",
+        eyebrow: "Te lo creiamo noi",
         
         body: "Ti forniamo noi tutto, dalla demo all'installazione. Non devi alzare un dito."
     },
@@ -86,7 +87,23 @@ const ITEMS: FeatureItem[] = [
 const FeatureCard: React.FC<{ item: FeatureItem }> = ({ item }) => (
     <article className="ft-card" aria-labelledby={`${item.id}-title`}>
         <div className="ft-imageFrame">
-            <img className="ft-image" src={item.image} alt={item.imageAlt} loading="lazy" />
+            {item.video ? (
+                <video
+                    className="ft-image"
+                    src={item.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                />
+            ) : (
+                <img
+                    className="ft-image"
+                    src={item.image}
+                    alt={item.imageAlt}
+                    loading="lazy"
+                />
+            )}
         </div>
 
         <div className="ft-copy">
@@ -158,6 +175,10 @@ const FeatureTriptych: React.FC = () => {
                     </button>
                 </div>
             </div>
+            <div className='no-card-required-container'>
+          <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
+          <p className="no-card-text">Senza carta. Senza impegno.</p>
+        </div>
         </section>
     );
 };

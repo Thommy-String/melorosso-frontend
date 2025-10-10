@@ -243,9 +243,9 @@ const HeroSection = () => (
     <div className="container">
       <div className="title-container">
 
-
+        
         <h1 className="section-title">
-          Ottieni il tuo{" "}
+          Creiamo il tuo{" "}
           <span
             style={{
               background: "linear-gradient(90deg,rgb(85, 0, 255), rgba(255, 89, 0, 0.97))",
@@ -255,19 +255,17 @@ const HeroSection = () => (
             }}
           >
             Agente AI gratis
-          </span>{" "} su misura per il tuo sito.
+          </span>{" "} per il tuo sito. 
         </h1>
+        
       </div>
-
-    
-
-      <div style={{ marginTop: 32 }} />
+            <div style={{marginTop: '22px'}}></div>
       <SocialProof
         /* avatars is optional; you can add local images later */
         rating={5}
         text="Più di 326 agenti creati. 92.7% di aziende 🇮🇹 soddisfatte."
       />
-
+      
 
       <div style={{ marginTop: 32 }} />
 
@@ -439,7 +437,7 @@ const Pricing = () => {
                     </li>
                   ))}
                 </ul>
-                
+
                 {/* Bottone che ora apre il pop-up */}
                 <button
                   onClick={openModal}

@@ -38,6 +38,7 @@ html {
   --margin-sx: 32px;
 
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --ft-card-w: 220px !important; /* Larghezza di base per mobile */
 }
 
 body {
@@ -55,6 +56,14 @@ body {
   max-width: 1800px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 24px; /* Aggiunto padding orizzontale di base */
+  box-sizing: border-box; /* Assicura che il padding non rompa il layout */
+}
+
+@media(max-width: 768px) {
+  .container {
+    padding: 0 0px;
+  }
 }
 
 /* --- MEDIA (video/immagini) --- */
@@ -306,7 +315,7 @@ p {
   .section-subtitle { padding: 0 32px 12px 32px; font-size: 16px; }
   .hero-title { font-size: 2.5rem; margin: 48px 0 24px 0; }
   .hero-subtitle { line-height: 1.6rem; }
-  .hero-section { margin: 0; }
+  .hero-section { margin: 0; padding-top: 32px !important;  }
   .final-cta-image { width: 100%; height: 100px; }
 
   /* Override specifico: la FinalCTA non deve schiacciare l'immagine a 100px */
@@ -416,7 +425,7 @@ p {
 /* === HERO (moderna, senza immagine) + BENEFITS APPLE-CARD === */
 
 .hero-section {
-  padding: 40px 0 var(--margin-md);
+  padding: 64px 0 var(--margin-md);
   /* Grey dot pattern + top overlay gradient to fade dots near bottom for smoother section transition */
   background-color: #f5f5f7; /* light grey base */
   background-image:
@@ -451,6 +460,7 @@ p {
 }
 
 .no-card-required-container {
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -474,4 +484,92 @@ p {
 .section-subtitle--lg {
   font-size: 18px;
   line-height: 1.6;
+}
+/* Breakpoint per tablet e schermi medi */
+@media (min-width: 769px) {
+  :root {
+    --ft-card-w: 320px;
+  }
+}
+/* Breakpoint per desktop */
+@media (min-width: 1200px) {
+  :root {
+    --ft-card-w: 360px;
+  }
+}
+/* Breakpoint per schermi molto grandi */
+@media (min-width: 1600px) {
+  :root {
+    --ft-card-w: 420px;
+  }
+}
+
+/* === BENEFITS GALLERY – responsive columns & widescreen support === */
+/* Ensure the viewport and carousel can use full width */
+.ft-viewport, .ft-carousel { 
+  max-width: 100%; 
+  overflow: hidden; 
+}
+
+.ft-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--ft-card-w); /* Usa la variabile per la larghezza */
+  gap: 24px;
+  
+  /* Logica per lo scroll su schermi più piccoli */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 24px; /* Spazio per l'ombra e la scrollbar (nascosta) */
+  
+  /* Nasconde la scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.ft-track::-webkit-scrollbar { 
+  display: none; 
+}
+
+@media (max-width: 1199px) {
+  .ft-track {
+    padding-left: 24px;
+    padding-right: 24px;
+    scroll-padding-left: 24px;
+    scroll-padding-right: 24px;
+    scroll-snap-stop: always;
+  }
+}
+.ft-track::-webkit-scrollbar { 
+  display: none; 
+}
+
+.ft-card { 
+  width: var(--ft-card-w); /* La larghezza è sempre controllata dalla variabile */
+  scroll-snap-align: start;
+}
+
+@media (min-width: 1200px) {
+  .ft-track {
+    grid-auto-flow: row; /* Le card possono andare a capo */
+    grid-template-columns: repeat(auto-fit, minmax(var(--ft-card-w), 1fr)); /* Crea una griglia reattiva */
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+  }
+}
+
+/* === Widescreen fix: allow feature container to use full width === */
+@media (min-width: 1200px) {
+  .ft-container {
+    max-width: none !important; /* force override of var(--ft-maxw) */
+    width: 100%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .ft-container {
+    max-width: none !important; /* force override of var(--ft-maxw) */
+    width: 100%;
+  }
 }

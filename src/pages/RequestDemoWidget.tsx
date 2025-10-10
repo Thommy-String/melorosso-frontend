@@ -70,54 +70,54 @@ const RequestDemoWidget: React.FC<RequestDemoProps> = ({ source = "hero", classN
 
 
 
-// In RequestDemoWidget.tsx
+    // In RequestDemoWidget.tsx
 
-const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!siteUrl.trim()) return;
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!siteUrl.trim()) return;
 
-    // 1. Mostra subito lo stato di caricamento e passa alla vista "processing"
-    setLoading(true);
-    setCompletedStep(0);
-    setSubmittedSiteUrl(siteUrl);
-    setView('processing'); 
+        // 1. Mostra subito lo stato di caricamento e passa alla vista "processing"
+        setLoading(true);
+        setCompletedStep(0);
+        setSubmittedSiteUrl(siteUrl);
+        setView('processing');
 
-    // Prepariamo i dati da inviare al backend
-    const formData = {
-        siteUrl: siteUrl,
-        source: source,
-    };
+        // Prepariamo i dati da inviare al backend
+        const formData = {
+            siteUrl: siteUrl,
+            source: source,
+        };
 
-    try {
-        // 2. Ora, "dietro le quinte", contatta il server mentre l'utente vede la schermata "In preparazione"
-        const apiEndpoint = 'https://melorosso-contact-email.onrender.com/api/request-demo';
+        try {
+            // 2. Ora, "dietro le quinte", contatta il server mentre l'utente vede la schermata "In preparazione"
+            const apiEndpoint = 'https://melorosso-contact-email.onrender.com/api/request-demo';
 
-        const response = await fetch(apiEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
+            const response = await fetch(apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-        // Se il server risponde con un errore (dopo essersi svegliato), lo gestiamo
-        if (!response.ok) {
-            // Se fallisce, l'utente verrà mandato alla schermata di errore
-            throw new Error('La richiesta al server è fallita');
+            // Se il server risponde con un errore (dopo essersi svegliato), lo gestiamo
+            if (!response.ok) {
+                // Se fallisce, l'utente verrà mandato alla schermata di errore
+                throw new Error('La richiesta al server è fallita');
+            }
+
+            // Se tutto va a buon fine, la richiesta è completata e l'utente ha già visto la schermata corretta.
+            // Il pulsante di loading si disattiverà nel blocco 'finally'.
+
+        } catch (err) {
+            console.error("request-demo error", err);
+            setView('error'); // Se c'è un errore, l'utente lo vedrà
+        } finally {
+            // Questa parte non è più strettamente necessaria se il form scompare,
+            // ma la lasciamo per sicurezza.
+            setLoading(false);
         }
-        
-        // Se tutto va a buon fine, la richiesta è completata e l'utente ha già visto la schermata corretta.
-        // Il pulsante di loading si disattiverà nel blocco 'finally'.
-
-    } catch (err) {
-        console.error("request-demo error", err);
-        setView('error'); // Se c'è un errore, l'utente lo vedrà
-    } finally {
-        // Questa parte non è più strettamente necessaria se il form scompare,
-        // ma la lasciamo per sicurezza.
-        setLoading(false);
-    }
-};
+    };
     // ========= FINE MODIFICA =========
 
     const handleReset = () => {
@@ -137,7 +137,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     const currentStepIndex = view === 'form' ? 0 : 1;
 
     return (
-        
+
         <div className={`mr-demo-widget ${className || ""}`}>
             <div className="mr-steps-container">
                 {stepsData.map((s, index) => {
@@ -216,12 +216,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                         </div>
                     );
                 })}
-                
+
             </div>
             <div className='no-card-required-container'>
-        <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
-        <p className="no-card-text">Senza carta. Senza limiti di tempo.</p>
-      </div>
+                <img className='no-card-image' src="https://static.thenounproject.com/png/2028787-200.png" alt="" />
+                <p className="no-card-text">Senza carta. Senza limiti di tempo.</p>
+            </div>
         </div>
     );
 };
