@@ -17,6 +17,8 @@ import salesmanCervello from './images/salesmanCervello.png';
 import salesmanRelaxed from './images/salesmanRelaxed.png';
 import salesmanRedApple from './images/salesmanRedApple.png';
 
+import { useConsent } from './consent/ConsentContent';
+
 
 
 import UseCaseShowcase from './pages/UseCaseShowcase';
@@ -481,20 +483,26 @@ const Pricing = () => {
 };
 
 
-const Footer = () => (
-  <footer className="site-footer">
-    <div className="container footer-container">
-      <p>&copy; {new Date().getFullYear()} Melorosso. Tutti i diritti riservati.</p>
-      <nav className="footer-nav">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Termini di Servizio</a>
-        <a href="mailto:info@melorosso.it?subject=Richiesta%20informazioni&body=Ciao%2C%20vorrei%20sapere%20di%20pi%C3%B9...">
-          info@melorosso.it
-        </a>
-      </nav>
-    </div>
-  </footer>
-);
+const Footer: React.FC = () => {
+  const { openPrefs } = useConsent();
+  return (
+    <footer className="site-footer">
+      <div className="container footer-container">
+        <p>&copy; {new Date().getFullYear()} Melorosso. Tutti i diritti riservati.</p>
+        <nav className="footer-nav" style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Termini di Servizio</a>
+          <a href="mailto:info@melorosso.it?subject=Richiesta%20informazioni&body=Ciao%2C%20vorrei%20sapere%20di%20pi%C3%B9...">
+            info@melorosso.it
+          </a>
+          <button type="button" onClick={openPrefs} className="cta-button secondary" style={{ padding: '6px 10px' }}>
+            Gestisci cookie
+          </button>
+        </nav>
+      </div>
+    </footer>
+  );
+};
 
 
 function App() {
