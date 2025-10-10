@@ -10,9 +10,9 @@ import DemoAgenteAi from '../videos/Demo-AgenteAi.mp4';
 
 // Google Ads conversion helper (decl for TS)
 declare global {
-  interface Window {
-    gtag_report_conversion?: (url?: string) => boolean | void;
-  }
+    interface Window {
+        gtag_report_conversion?: (url?: string) => boolean | void;
+    }
 }
 
 // --- Icone e Componenti ---
@@ -173,11 +173,11 @@ const RequestDemoWidget: React.FC<RequestDemoProps> = ({ source = "hero", classN
                                             <form className="mr-row" onSubmit={handleSubmit}>
                                                 <input type="text" inputMode="url" autoComplete="url" placeholder="Il tuo sito (es. azienda.it)" className="mr-input" value={siteUrl} onChange={(e) => setSiteUrl(e.target.value)} required disabled={loading} />
                                                 <button
-                                                  className="mr-btn"
-                                                  type="submit"
-                                                  aria-label="Crea la mia demo"
-                                                  disabled={loading}
-                                                  onClick={() => { try { window.gtag_report_conversion && window.gtag_report_conversion(); } catch (_) {} }}
+                                                    className="mr-btn"
+                                                    type="submit"
+                                                    aria-label="Crea la mia demo"
+                                                    disabled={loading}
+                                                    onClick={() => { try { window.gtag_report_conversion && window.gtag_report_conversion(); } catch (_) { } }}
                                                 >
                                                     {loading ? 'Invio...' : (
                                                         <>
@@ -192,9 +192,13 @@ const RequestDemoWidget: React.FC<RequestDemoProps> = ({ source = "hero", classN
                                                     <CheckIcon />
                                                     <span className="site-name">{getDomainFromUrl(submittedSiteUrl)}</span>
                                                 </h4>
+                                                <div className="mr-status-text">
+                                                    Costruzione demo in corso...
+                                                </div>
                                                 <p className="primary-text">
                                                     Sito ricevuto! Lo stiamo analizzando per capire di cosa ti occupi e per preparare l'agente.
                                                 </p>
+                                                
                                                 <p className="secondary-text">
                                                     Lo facciamo da zero su misura per te, potrebbe volerci qualche ora. Riceverai un link privato per testare l'agente come se fossi un cliente. Considerala una base intelligente che potremo poi perfezionare insieme.
                                                 </p>

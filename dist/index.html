@@ -10,6 +10,24 @@
 
   gtag('config', 'AW-17638729340');
 </script>
+<script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17638729340/ut7rCJjPw6obEPzM5tpB',
+        'value': 1.0,
+        'currency': 'EUR',
+        'event_callback': callback
+      });
+    }
+    return false;
+  }
+</script>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://cdn.melorosso.it/chatbot-frontend.css">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -24,7 +42,7 @@
     <meta property="og:url" content="https://melorosso.it">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://cdn.melorosso.it/og-preview.png">
-    <script type="module" crossorigin src="/assets/index-xpjHSIVC.js"></script>
+    <script type="module" crossorigin src="/assets/index-Bf_4QMAv.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-uz1lQmgl.css">
   </head>
   <body>
